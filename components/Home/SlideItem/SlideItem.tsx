@@ -1,6 +1,6 @@
 import SectionHeading from "@/components/Helper/SectionHeading";
 import React from "react";
-import DestinationSlider from "./DestinationSlider";
+import Slide from "./Slide";
 
 const Destination = () => {
   return (
@@ -10,7 +10,7 @@ const Destination = () => {
       {/* Section Content */}
       <div className="mt-14 w-[80%] mx-auto">
         {/* Slider */}
-        <DestinationSlider />
+        <Slide />
       </div>
     </div>
   );
