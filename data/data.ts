@@ -193,3 +193,17 @@ export const reviewData = [
     image: "/images/u2.jpg",
   },
 ];
+
+// กำหนด type ของ props ที่ใช้ใน component Hero
+export type HeroProps = {
+  videoSrc?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+// กำหนด default props สำหรับ component Hero
+export const defaultHeroProps: HeroProps = {
+  videoSrc: "/images/hero1.mp4",
+  title: "Lets Enjoy The Nature",
+  subtitle: "Get the best prices on 2,000,000+ properties,worldwide",
+}

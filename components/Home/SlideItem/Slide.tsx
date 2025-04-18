@@ -24,7 +24,7 @@ const responsive = {
   },
 };
 
-const DestinationSlider = () => {
+const Slide = () => {
   return (
     <Carousel
       responsive={responsive}
@@ -59,4 +59,4 @@ const DestinationSlider = () => {
   );
 };
 
-export default DestinationSlider;
+export default Slide;

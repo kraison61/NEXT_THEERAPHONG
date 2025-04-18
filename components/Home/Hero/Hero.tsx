@@ -1,15 +1,18 @@
 import SearchBox from "@/components/Helper/SearchBox";
 import Link from "next/link";
 import React from "react";
+import { HeroProps,defaultHeroProps } from "@/data/data"; 
 
-const Hero = () => {
+
+
+const Hero = ({title = defaultHeroProps.title,subtitle=defaultHeroProps.subtitle, videoSrc=defaultHeroProps.videoSrc}:HeroProps) => {
   return (
     <div className="relative w-full h-[120vh] sm:h-[100vh]">
       {/* overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-70"></div>
       {/* Video */}
       <video
-        src="/images/hero1.mp4"
+        src={videoSrc}
         autoPlay
         muted
         loop
@@ -21,10 +24,10 @@ const Hero = () => {
         <div className="flex items-center justify-center flex-col w-full h-full">
           <div data-aos="fade-up">
             <h1 className="text-[25px] mb-4 md:mb-0 text-center md:text-[35px] lg:text-[45px] tracking-[0.7rem] text-white font-bold uppercase">
-              Lets Enjoy The Nature
+              {title}
             </h1>
             <p className="md:text-base text-center text-lg text-white font-normal [word-spacing:5px]">
-              Get the best prices on 2,000,000+ properties,worldwide
+              {subtitle}
             </p>
           </div>
           {/* Search Box */}
