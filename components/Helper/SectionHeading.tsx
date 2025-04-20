@@ -1,15 +1,18 @@
 import React from "react";
 
 type Props = {
-  heading: string;
+  sectionHeading: string;
+  sectionTitle:string
 };
 
-const SectionHeading = ({ heading }: Props) => {
+const SectionHeading = ({ sectionHeading,sectionTitle }: Props) => {
+console.log(sectionHeading)
+
   return (
     <div className="w-[80%] mx-auto">
-      <h1 className="text-xl sm:text-3xl text-blue-950 font-bold">{heading}</h1>
+      <h1 className="text-xl sm:text-3xl text-blue-950 font-bold">{sectionHeading}</h1>
       <p className="mt-2 text-gray-700 sm:text-base text-sm font-medium">
-        Lorem ipsum dolor sit amet consectetur.
+        {sectionTitle} : Title
       </p>
     </div>
   );

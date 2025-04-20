@@ -4,9 +4,14 @@ import { prisma } from "@/lib/prisma";
 const pageBlog = async () => {
   const services = await prisma.service.findMany({ 
     include : {
-      servicename:true
+      serviceName:true
     }
   });
+  // const services = await prisma.service.findMany({ 
+  //   include : {
+  //     servicename:true
+  //   }
+  // });
   console.log(services);
 
   return (

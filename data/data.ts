@@ -1,53 +1,53 @@
-export const destinationData = [
-  {
-    id: 1,
-    image: "/images/d1.jpg",
-    country: "France",
-    travelers: "150,000",
-  },
-  {
-    id: 2,
-    image: "/images/d2.jpg",
-    country: "USA",
-    travelers: "250,000",
-  },
-  {
-    id: 3,
-    image: "/images/d3.jpg",
-    country: "Italy",
-    travelers: "180,000",
-  },
-  {
-    id: 4,
-    image: "/images/d4.jpg",
-    country: "Japan",
-    travelers: "200,000",
-  },
-  {
-    id: 5,
-    image: "/images/d5.jpg",
-    country: "Australia",
-    travelers: "120,000",
-  },
-  {
-    id: 6,
-    image: "/images/d6.jpg",
-    country: "Canada",
-    travelers: "175,000",
-  },
-  {
-    id: 7,
-    image: "/images/d7.jpg",
-    country: "Germany",
-    travelers: "160,000",
-  },
-  {
-    id: 8,
-    image: "/images/d8.jpg",
-    country: "Brazil",
-    travelers: "140,000",
-  },
-];
+// export const destinationData: serviceItem[] = [
+//   {
+//     id: 1,
+//     image: "/images/d1.jpg",
+//     country: "France",
+//     travelers: "150,000",
+//   },
+//   {
+//     id: 2,
+//     image: "/images/d2.jpg",
+//     country: "USA",
+//     travelers: "250,000",
+//   },
+//   {
+//     id: 3,
+//     image: "/images/d3.jpg",
+//     country: "Italy",
+//     travelers: "180,000",
+//   },
+//   {
+//     id: 4,
+//     image: "/images/d4.jpg",
+//     country: "Japan",
+//     travelers: "200,000",
+//   },
+//   {
+//     id: 5,
+//     image: "/images/d5.jpg",
+//     country: "Australia",
+//     travelers: "120,000",
+//   },
+//   {
+//     id: 6,
+//     image: "/images/d6.jpg",
+//     country: "Canada",
+//     travelers: "175,000",
+//   },
+//   {
+//     id: 7,
+//     image: "/images/d7.jpg",
+//     country: "Germany",
+//     travelers: "160,000",
+//   },
+//   {
+//     id: 8,
+//     image: "/images/d8.jpg",
+//     country: "Brazil",
+//     travelers: "140,000",
+//   },
+// ];
 
 export const hotelsData = [
   {
@@ -81,7 +81,7 @@ export const hotelsData = [
     id: 4,
     image: "/images/h4.jpg",
     name: "Hilton Roma Luxury Hotel Palace",
-    location: "Vaticano Prati, Rome",
+    location: "Vaticano Prati, Rome",     
     rating: 4.5,
     reviews: "2,876",
     price: "68",
@@ -199,11 +199,44 @@ export type HeroProps = {
   videoSrc?: string;
   title?: string;
   subtitle?: string;
-}
+};
 
 // กำหนด default props สำหรับ component Hero
 export const defaultHeroProps: HeroProps = {
   videoSrc: "/images/hero1.mp4",
-  title: "Lets Enjoy The Nature",
-  subtitle: "Get the best prices on 2,000,000+ properties,worldwide",
+  title: "THEERAPHONG CO.,LTD.",
+  subtitle: "บริการรับเหมาก่อสร้าง และ Constulting Construction",
+};
+
+export type serviceItem = {
+  id: number;
+  service_id: number;
+  kw_title: string;
+  kw_des: string;
+  kw_h1: string;
+  kw_top1: string;
+  kw_top2: string;
+  kw_con1: string;
+  kw_con2: string;
+  kw_img1?: string;
+  kw_img2?: string;
+  created_at?: Date;
+  updated_at?: Date;
+  topalt?: string;
+  bottomalt?: string;
+  image?: string;
+  serviceName?: {
+    id: number;
+    service_name: string; // or "name" if you've mapped it in your code
+  };
+};
+
+export type serviceDataProps = {
+  serviceData: serviceItem[];
+};
+
+export type sectionHeadingProps = {
+  sectionHeading : string;
+  sectionTitle : string;
 }
+

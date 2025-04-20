@@ -9,8 +9,15 @@ import News from "./News/News";
 import Newsletter from "./Newsletter/Newsletter";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
+import { sectionHeadingProps, serviceItem } from "@/data/data";
 
-const Home = () => {
+type HomeProps = {
+  serviceData: serviceItem[];
+  section: sectionHeadingProps;
+}
+
+const Home:React.FC<HomeProps> = ({serviceData,section}) => {
+
   useEffect(() => {
     const initAOS = async () => {
       await import("aos");
@@ -27,7 +34,7 @@ const Home = () => {
   return (
     <div className="overflow-hidden ">
       <Hero />
-      <SlideItem />
+      <SlideItem serviceData={serviceData} section={section} />
       <Hotel />
       <WhyChoose />
       <Review />

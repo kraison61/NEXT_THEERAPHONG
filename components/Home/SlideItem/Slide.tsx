@@ -1,10 +1,12 @@
 "use client";
-import { destinationData } from "@/data/data";
+// import { destinationData } from "@/data/data";
 import Image from "next/image";
 import React from "react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
+import { serviceDataProps } from "@/data/data";
 
 const responsive = {
   desktop: {
@@ -23,8 +25,7 @@ const responsive = {
     slidesToSlide: 1, // optional, default to 1.
   },
 };
-
-const Slide = () => {
+const Slide = ({ serviceData }: serviceDataProps) => {
   return (
     <Carousel
       responsive={responsive}
@@ -33,7 +34,7 @@ const Slide = () => {
       autoPlaySpeed={5000}
       keyBoardControl={true}
     >
-      {destinationData.map((data) => {
+      {serviceData.map((data) => {
         return (
           <div key={data.id} className="m-3">
             {/* Image Div */}
@@ -42,16 +43,20 @@ const Slide = () => {
               <div className="absolute inset-0 bg-black opacity-25 rounded-lg"></div>
               {/* Image */}
               <Image
-                src={data.image}
-                alt={data.country}
+                src={`/${data.kw_img1}`}
+                alt={data.kw_title}
                 width={500}
                 height={500}
                 className="h-full w-full object-cover rounded-lg"
               />
               {/* Text Content */}
             </div>
-            <h1 className="text-lg font-semibold mt-4">{data.country}</h1>
-            <p className="text-sm text-gray-600">{data.travelers} Travelers</p>
+            <h1 className="text-lg font-semibold mt-4 line-clamp-1 ">
+              {data.serviceName?.service_name}
+            </h1>
+            <p className="text-sm text-gray-600 line-clamp-2 truncate">
+              {data.kw_h1}
+            </p>
           </div>
         );
       })}
