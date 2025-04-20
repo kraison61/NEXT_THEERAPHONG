@@ -38,3 +38,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Video
+*.mp4
+*.webm
+*.webp
+*.jpg
+*.png
+
+
+
+# clerk configuration (can include secrets)
+/.clerk/
