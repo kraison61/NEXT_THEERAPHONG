@@ -1,18 +1,27 @@
+
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import DOMPurify from "dompurify";
+import ContentsPage from "@/components/Home/Contents/Contents";
 
-interface PageProps {
-  params: {
-    slug: string;
+interface ContentsPageProps {
+  servicename: {
+    service_name: string;
+    Service: {
+      kw_img1: string | null;
+      kw_top1: string;
+      kw_con1: string;
+    }[];
   };
 }
 
-const pageBlog = async ({ params }: PageProps) => {
-  const slug = params.slug; // รับ slug มาจาก URL param
+const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params; // ✅ ต้อง await params ทั้ง object
+  // ✅ ใช้ params.slug ตรงนี้
 
-  const serviceName = await prisma.serviceName.findUnique({
+  const serviceName = await prisma.serviceName.findFirst({
     where: {
-      service_link: slug,
+      service_link: slug, // ✅ slug เป็น string แล้ว OK!
     },
     include: {
       Service: true,
@@ -23,33 +32,15 @@ const pageBlog = async ({ params }: PageProps) => {
     return <div>Service not found</div>;
   }
 
+
   return (
     <main className="max-w-3xl mx-auto px-4 pt-[15vh] pb-20">
       <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
         {serviceName.service_name}
       </h1>
 
-      {serviceName.Service.map((service) => (
-        <section key={service.id} className="grid md:grid-cols-2 gap-10 items-center mb-20">
-          <div className="rounded-xl overflow-hidden shadow-md">
-            <Image
-              src={service.kw_img1 || "/images/n1.jpg"}
-              alt="ภาพประกอบบริการ"
-              width={800}
-              height={500}
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              {service.kw_h1}
-            </h2>
-            <p className="text-base leading-relaxed text-gray-700">
-              {service.kw_con1}
-            </p>
-          </div>
-        </section>
-      ))}
+     <ContentsPage  service={serviceName.Service[0]} />
+      
     </main>
   );
 };

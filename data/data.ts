@@ -81,7 +81,7 @@ export const hotelsData = [
     id: 4,
     image: "/images/h4.jpg",
     name: "Hilton Roma Luxury Hotel Palace",
-    location: "Vaticano Prati, Rome",     
+    location: "Vaticano Prati, Rome",
     rating: 4.5,
     reviews: "2,876",
     price: "68",
@@ -228,6 +228,7 @@ export type serviceItem = {
   serviceName?: {
     id: number;
     service_name: string; // or "name" if you've mapped it in your code
+    service_link:string
   };
 };
 
@@ -236,7 +237,6 @@ export type serviceDataProps = {
 };
 
 export type sectionHeadingProps = {
-  sectionHeading : string;
-  sectionTitle : string;
-}
-
+  sectionHeading: string;
+  sectionTitle: string;
+};

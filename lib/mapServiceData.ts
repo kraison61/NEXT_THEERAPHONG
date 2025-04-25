@@ -12,6 +12,7 @@ export function mapServiceData(data: any[]): serviceItem[] {
       ? {
           id: Number(item.serviceName.id),
           service_name: item.serviceName.service_name,
+          service_link: item.serviceName.service_link
         }
       : undefined,
   }));

@@ -35,6 +35,7 @@ const Home:React.FC<HomeProps> = ({serviceData,section}) => {
     <div className="overflow-hidden ">
       <Hero />
       <SlideItem serviceData={serviceData} section={section} />
+      <SlideItem serviceData={serviceData} section={section} />
       <Hotel />
       <WhyChoose />
       <Review />

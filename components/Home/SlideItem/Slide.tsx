@@ -7,6 +7,11 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { serviceDataProps } from "@/data/data";
+import Link from "next/link";
+
+import DOMPurify from "dompurify";
+
+
 
 const responsive = {
   desktop: {
@@ -26,6 +31,7 @@ const responsive = {
   },
 };
 const Slide = ({ serviceData }: serviceDataProps) => {
+   
   return (
     <Carousel
       responsive={responsive}
@@ -36,7 +42,9 @@ const Slide = ({ serviceData }: serviceDataProps) => {
     >
       {serviceData.map((data) => {
         return (
-          <div key={data.id} className="m-3">
+          <Link href={`${data.serviceName?.service_link}`} key={data.id} >
+          <div  className="m-3">
+           
             {/* Image Div */}
             <div className="relative h-[400px]">
               {/* Overlay */}
@@ -58,6 +66,7 @@ const Slide = ({ serviceData }: serviceDataProps) => {
               {data.kw_h1}
             </p>
           </div>
+          </Link>
         );
       })}
     </Carousel>

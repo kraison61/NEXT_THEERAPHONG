@@ -11,7 +11,7 @@ const HomePage = async () => {
 const safeData = mapServiceData(rawData);
 
 const section:sectionHeadingProps = {
-  sectionHeading : "บริการ",
+  sectionHeading : "งานรับเหมาที่ให้บริการ",
   sectionTitle : "รายละเอียดงานบริการ"
 }
 

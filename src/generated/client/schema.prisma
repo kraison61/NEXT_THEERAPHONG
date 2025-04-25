@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name                      String    @db.VarChar(255)
+  email                     String    @unique(map: "users_email_unique") @db.VarChar(255)
+  email_verified_at         DateTime? @db.Timestamp(0)
+  password                  String    @db.VarChar(255)
+  two_factor_secret         String?   @db.Text
+  two_factor_recovery_codes String?   @db.Text
+  remember_token            String?   @db.VarChar(100)
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+
+  @@map("users")
+}
+
+model Blog {
+  id             BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  title          String      @db.VarChar(255)
+  description    String      @db.VarChar(255)
+  content        String      @db.LongText
+  image          String      @db.VarChar(255)
+  servicename_id BigInt
+  created_at     DateTime?   @db.Timestamp(0)
+  updated_at     DateTime?   @db.Timestamp(0)
+  serviceName    ServiceName @relation(fields: [servicename_id], references: [id])
+
+  @@map("blogs")
+}
+
+model ServiceName {
+  id           BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  service_name String    @db.VarChar(255)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  service_link String    @unique @db.VarChar(255)
+  Service      Service[]
+  Blog         Blog[]
+
+  @@map("service_names")
+}
+
+model Service {
+  id          BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
+  service_id  BigInt
+  kw_title    String        @db.VarChar(255)
+  kw_des      String        @db.VarChar(255)
+  kw_h1       String        @db.VarChar(255)
+  kw_top1     String        @db.VarChar(255)
+  kw_top2     String        @db.VarChar(255)
+  kw_con1     String        @db.LongText
+  kw_con2     String        @db.LongText
+  kw_img1     String?       @db.VarChar(255)
+  kw_img2     String?       @db.VarChar(255)
+  created_at  DateTime?     @db.Timestamp(0)
+  updated_at  DateTime?     @db.Timestamp(0)
+  topalt      String?       @db.VarChar(255)
+  bottomalt   String?       @db.VarChar(255)
+  serviceName ServiceName   @relation(fields: [service_id], references: [id])
+  ImageUpload ImageUpload[]
+
+  @@map("services")
+}
+
+model ImageUpload {
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  service_id  BigInt
+  img_url     String    @db.VarChar(255)
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  location    String    @db.VarChar(255)
+  worked_date DateTime  @db.Date
+  service     Service?  @relation(fields: [service_id], references: [id])
+
+  @@map("image_uploads")
+}
+
+model failed_jobs {
+  id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid       String   @unique(map: "failed_jobs_uuid_unique") @db.VarChar(255)
+  connection String   @db.Text
+  queue      String   @db.Text
+  payload    String   @db.LongText
+  exception  String   @db.LongText
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model password_resets {
+  email      String    @db.VarChar(255)
+  token      String    @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+
+  @@index([email], map: "password_resets_email_index")
+  @@ignore
+}
+
+model personal_access_tokens {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  tokenable_type String    @db.VarChar(255)
+  tokenable_id   BigInt    @db.UnsignedBigInt
+  name           String    @db.VarChar(255)
+  token          String    @unique(map: "personal_access_tokens_token_unique") @db.VarChar(64)
+  abilities      String?   @db.Text
+  last_used_at   DateTime? @db.Timestamp(0)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+
+  @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
+}
+
+model sessions {
+  id            String  @id @db.VarChar(255)
+  user_id       BigInt? @db.UnsignedBigInt
+  ip_address    String? @db.VarChar(45)
+  user_agent    String? @db.Text
+  payload       String  @db.Text
+  last_activity Int
+
+  @@index([last_activity], map: "sessions_last_activity_index")
+  @@index([user_id], map: "sessions_user_id_index")
+}
