@@ -49,8 +49,8 @@ const Home: React.FC<HomeProps> = ({ services,images,blogs }) => {
       {/* <Hotel /> */}
       <WhyChoose />
       <Review />
-      <News />
-      <Newsletter />
+      {/* <News />
+      <Newsletter /> */}
     </div>
   );
 };
