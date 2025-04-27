@@ -40,11 +40,13 @@ const Nav = ({ openNav }: Props) => {
     >
       <div className="flex items-center h-full justify-between w-[90%] xl:w-[80%] mx-auto">
         {/* LOGO */}
+<Link href="/">
         <div className="flex items-center space-x-2">
-          <h1 className="text-xl md:text-2xl text-white uppercase font-bold">
+          <div className="text-xl md:text-2xl text-white uppercase font-bold">
             <Logo />
-          </h1>
+          </div>
         </div>
+        </Link>
         {/* NavLinks  */}
         <div className="hidden lg:flex items-center space-x-10">
           {navLinks.map((link) => {

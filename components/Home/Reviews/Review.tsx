@@ -8,13 +8,12 @@ const Review = () => {
       <div className="w-[80%] mx-auto grid items-center grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Text Content */}
         <div>
-          <h1 className="text-2xl font-semibold text-white">
-            What our customers are saying us?
-          </h1>
+          <h2 className="text-2xl font-semibold text-white">
+          เสียงตอบรับจากลูกค้าของเรา
+          </h2>
           <p className="mt-6 text-gray-200">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-            nesciunt fugiat praesentium dolores facilis delectus modi culpa
-            aliquid deserunt ad!
+          ความไว้วางใจจากลูกค้าคือสิ่งที่บริษัท ธีรพงษ์เซอร์วิส จำกัด ให้ความสำคัญเป็นอันดับหนึ่ง เราเชื่อว่าผลงานที่ดีต้องสร้างจากความซื่อสัตย์ ใส่ใจ และคุณภาพที่จับต้องได้ ทุกคำชื่นชมและข้อเสนอแนะจากลูกค้าคือแรงผลักดันให้เราพัฒนาบริการให้ดียิ่งขึ้นเสมอ
+นี่คือเสียงจริงจากลูกค้าที่เคยใช้บริการของเรา:
           </p>
           {/* Ratings */}
           <div className="mt-6 flex items-center space-x-6">

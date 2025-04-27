@@ -2,7 +2,7 @@ export const navLinks = [
   {
     id: 1,
     url: "/",
-    label: "Home",
+    label: "หน้าแรก",
   },
   {
     id: 2,
@@ -11,22 +11,22 @@ export const navLinks = [
   },
   {
     id: 3,
-    url: "/",
-    label: "Destination",
+    url: "/#servicesId",
+    label: "บริการ",
   },
   {
     id: 4,
-    url: "/",
-    label: "Blog",
+    url: "/#blogsId",
+    label: "บทความ",
   },
   {
     id: 5,
-    url: "/",
-    label: "Dashboard",
+    url: "/#imagesId",
+    label: "รูปภาพ",
   },
   {
     id: 6,
-    url: "/",
-    label: "Contact",
+    url: "/contact",
+    label: "ติดต่อเรา",
   },
 ];

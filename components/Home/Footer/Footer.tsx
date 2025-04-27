@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { FaDribbble, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -83,19 +83,22 @@ const Footer = () => {
       {/* Bottom section */}
       <div className="mt-8 w-[80%] mx-auto border-t pt-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
         <p className="text-center md:text-left">
-          Copyright © 2024 Webdev. All rights reserved
+        © 2025 บริษัท ธีรพงษ์เซอร์วิส จำกัด | Theeraphong Co., Ltd. | โทร. 08X-XXX-XXXX | Line: @theeraphongservice. All rights reserved
         </p>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
           <span>Social : </span>
-          <Link href="#" className="text-gray-500 hover:text-gray-800">
+          <Link href="https://www.facebook.com/TheeraphongRetainingwall" className="text-gray-500 hover:text-gray-800">
             <FaFacebook />
           </Link>
-          <Link href="#" className="text-gray-500 hover:text-gray-800">
+          <Link href="https://www.tiktok.com/@dy36mb8vjzm3?is_from_webapp=1&sender_device=pc" target="_blank" className="text-gray-500 hover:text-gray-800">
+            <FaTiktok />
+          </Link>
+          {/* <Link href="#" className="text-gray-500 hover:text-gray-800">
             <FaTwitter />
           </Link>
           <Link href="#" className="text-gray-500 hover:text-gray-800">
             <FaDribbble />
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

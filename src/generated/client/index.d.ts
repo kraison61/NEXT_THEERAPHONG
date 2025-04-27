@@ -10829,10 +10829,10 @@ export namespace Prisma {
 
   export type BlogWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
+    title?: string
     AND?: BlogWhereInput | BlogWhereInput[]
     OR?: BlogWhereInput[]
     NOT?: BlogWhereInput | BlogWhereInput[]
-    title?: StringFilter<"Blog"> | string
     description?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     image?: StringFilter<"Blog"> | string
@@ -10840,7 +10840,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
     serviceName?: XOR<ServiceNameScalarRelationFilter, ServiceNameWhereInput>
-  }, "id">
+  }, "id" | "title">
 
   export type BlogOrderByWithAggregationInput = {
     id?: SortOrder

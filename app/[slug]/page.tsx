@@ -1,19 +1,70 @@
-
-import Image from "next/image";
 import { prisma } from "@/lib/prisma";
-import DOMPurify from "dompurify";
 import ContentsPage from "@/components/Home/Contents/Contents";
+import { Metadata } from "next";
 
-interface ContentsPageProps {
-  servicename: {
-    service_name: string;
-    Service: {
-      kw_img1: string | null;
-      kw_top1: string;
-      kw_con1: string;
-    }[];
+
+
+interface PageProps {
+  params: {
+    slug: string;
   };
 }
+
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  try {
+    const slug = decodeURIComponent(params.slug);
+    
+    const data = await prisma.service.findFirst({
+      where: { serviceName:{service_link:slug} },
+      select: {
+        kw_title: true,
+        kw_des: true,
+        // Add other fields you need for metadata
+      },
+    });
+
+    if (!data) {
+      return {
+        title: 'Not Found',
+        description: 'The page you are looking for does not exist.',
+        robots: {
+          index: false,
+          follow: false,
+        },
+      };
+    }
+
+    return {
+      title: data.kw_title || 'Default Title',
+      description: data.kw_des || 'Default description',
+      alternates: {
+        canonical: `/services/${encodeURIComponent(slug)}`,
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {
+      title: 'Error',
+      description: 'An error occurred while loading this page.',
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const services = await prisma.service.findMany();
+
+    return services.map((service) => ({
+      slug: service.kw_title, // or service.service_id, if that's what you need
+    }));
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return [];
+  }
+}
+
+
 
 const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params; // ✅ ต้อง await params ทั้ง object
@@ -31,16 +82,13 @@ const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   if (!serviceName) {
     return <div>Service not found</div>;
   }
-
-
   return (
     <main className="max-w-3xl mx-auto px-4 pt-[15vh] pb-20">
       <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
         {serviceName.service_name}
       </h1>
 
-     <ContentsPage  service={serviceName.Service[0]} />
-      
+      <ContentsPage service={serviceName.Service[0]} />
     </main>
   );
 };

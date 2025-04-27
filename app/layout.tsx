@@ -11,20 +11,10 @@ const font = Poppins({
   subsets: ["latin"],
 });
 
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
 
 export const metadata: Metadata = {
-  title: "THEERAPHONG Co.,Ltd.",
-  description: "Travel Landing page using next js 15",
+  title: "รับเหมาก่อสร้างครบวงจร | ถมดิน ก่อกำแพงกันดิน เทพื้นคอนกรีต | Theeraphong Construction",
+  description: " รับเหมาก่อสร้างมืออาชีพ ให้บริการถมดิน ก่อสร้างกำแพงกันดิน รั้ว เทพื้นคอนกรีต ครบวงจร ด้วยทีมช่างประสบการณ์กว่า 10 ปี มั่นใจคุณภาพและมาตรฐานงานก่อสร้าง พร้อมให้คำปรึกษาฟรี",
 };
 
 export default function RootLayout({

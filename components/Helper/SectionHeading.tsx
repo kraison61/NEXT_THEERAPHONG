@@ -6,7 +6,6 @@ type Props = {
 };
 
 const SectionHeading = ({ sectionHeading,sectionTitle }: Props) => {
-console.log(sectionHeading)
 
   return (
     <div className="w-[80%] mx-auto">
