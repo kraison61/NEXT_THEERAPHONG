@@ -1,8 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import ContentsPage from "@/components/Home/Contents/Contents";
 import { Metadata } from "next";
-
-
+import DOMPurify from "dompurify";
 
 interface PageProps {
   params: {
@@ -10,13 +9,14 @@ interface PageProps {
   };
 }
 
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   try {
-    const slug = decodeURIComponent(params.slug);
-    
+    const slug = decodeURIComponent((await params).slug);
+
     const data = await prisma.service.findFirst({
-      where: { serviceName:{service_link:slug} },
+      where: { serviceName: { service_link: slug } },
       select: {
         kw_title: true,
         kw_des: true,
@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!data) {
       return {
-        title: 'Not Found',
-        description: 'The page you are looking for does not exist.',
+        title: "Not Found",
+        description: "The page you are looking for does not exist.",
         robots: {
           index: false,
           follow: false,
@@ -36,17 +36,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-      title: data.kw_title || 'Default Title',
-      description: data.kw_des || 'Default description',
+      title: data.kw_title || "Default Title",
+      description: data.kw_des || "Default description",
       alternates: {
         canonical: `/services/${encodeURIComponent(slug)}`,
       },
     };
   } catch (error) {
-    console.error('Error generating metadata:', error);
+    console.error("Error generating metadata:", error);
     return {
-      title: 'Error',
-      description: 'An error occurred while loading this page.',
+      title: "Error",
+      description: "An error occurred while loading this page.",
     };
   }
 }
@@ -63,8 +63,6 @@ export async function generateStaticParams() {
     return [];
   }
 }
-
-
 
 const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params; // ✅ ต้อง await params ทั้ง object
@@ -84,10 +82,6 @@ const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   }
   return (
     <main className="max-w-3xl mx-auto px-4 pt-[15vh] pb-20">
-      <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-        {serviceName.service_name}
-      </h1>
-
       <ContentsPage service={serviceName.Service[0]} />
     </main>
   );

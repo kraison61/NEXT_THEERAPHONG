@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={` ${font.className} antialiased`}>
         <ResponsiveNav />
         {children}
-        <Footer />
+        <Footer targetId="footerId"/>
         <ScrollToTop />
       </body>
     </html>

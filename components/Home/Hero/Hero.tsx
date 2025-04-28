@@ -9,7 +9,7 @@ const Hero = ({title = defaultHeroProps.title,subtitle=defaultHeroProps.subtitle
 
   const cleanTitle = DOMPurify.sanitize(title ?? '');
   const cleanSubtitle = DOMPurify.sanitize(subtitle ?? '', {
-    ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a'],
+    ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a','ul','li'],
     ALLOWED_ATTR: ['href', 'target', 'rel']
   });
   return (

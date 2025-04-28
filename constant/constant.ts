@@ -26,7 +26,7 @@ export const navLinks = [
   },
   {
     id: 6,
-    url: "/contact",
+    url: "/#footerId",
     label: "ติดต่อเรา",
   },
 ];

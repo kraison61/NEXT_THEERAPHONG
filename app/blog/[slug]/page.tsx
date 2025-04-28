@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-  const slug = await decodeURIComponent(params.slug.trim());
+  const slug = decodeURIComponent((await params).slug.trim());
 
   try {
     const articleData = await prisma.blog.findFirst({

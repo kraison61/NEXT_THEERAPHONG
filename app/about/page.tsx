@@ -23,7 +23,7 @@ const pageAbout = () => {
           <section className="flex flex-col md:flex-row items-center gap-8">
             <div className="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-lg">
               <Image
-                src="/images/h1.jpg"
+                src="/image/pages/ruk-02.jpg"
                 alt="ภาพประกอบบริการ"
                 width={800}
                 height={500}
@@ -57,7 +57,7 @@ const pageAbout = () => {
                 จุดแข็งของ บริษัท ธีรพงษ์เซอร์วิส จำกัด (Why Choose Us)
               </h2>
               <ul className="list-disc pl-5 mt-4 text-gray-700 space-y-2">
-                <li>🎯 มีประสบการณ์ในงานก่อสร้างมากกว่า 10 ปี</li>
+                <li>🎯 มีประสบการณ์ในงานก่อสร้างมากกว่า 20 ปี</li>
                 <li>🏆 ทีมงานมืออาชีพ พร้อมให้คำปรึกษาอย่างจริงใจ</li>
                 <li>
                   🛠️ ให้บริการงานก่อสร้างหลากหลายประเภท ทั้งขนาดเล็กและขนาดใหญ่
@@ -75,7 +75,7 @@ const pageAbout = () => {
           <section className="flex flex-col-reverse md:flex-row items-center gap-8">
             <div className="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-lg">
               <Image
-                src="/images/h1.jpg"
+                src="/image/pages/ruk-01.jpg"
                 alt="ภาพประกอบบริการ"
                 width={800}
                 height={500}
