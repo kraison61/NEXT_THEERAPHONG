@@ -8,21 +8,21 @@ const Footer = ({targetId}:{targetId:string}) => {
       <div className="w-[80%] mx-auto items-start grid-cols-1 sm:grid-cols-2 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* 1st part */}
         <div className="space-y-5">
-          <h1 className="text-lg font-bold">Company</h1>
+          <h3 className="text-lg font-bold">Company</h3>
           <p className="text-gray-800 font-medium cursor-pointer text-sm hover:text-blue-950">
             <Link href="/about">เกี่ยวกับเรา</Link>
           </p>
         </div>
         {/* 2nd part */}
         <div className="space-y-5">
-          <h1 className="text-lg font-bold">Support</h1>
+          <h3 className="text-lg font-bold">Support</h3>
           <p className="text-gray-800 font-medium cursor-pointer text-sm hover:text-blue-950">
           <Link href="/#servicesId">บริการต่าง ๆ</Link>
           </p>
                   </div>
         {/* 3rd part */}
         <div className="space-y-5">
-          <h1 className="text-lg font-bold">Other Services</h1>
+          <h3 className="text-lg font-bold">Other Services</h3>
           <p className="text-gray-800 font-medium cursor-pointer text-sm hover:text-blue-950">
           <Link href="/#blogsId">ข่าวสาร และบทความ</Link>
           </p>
@@ -30,30 +30,30 @@ const Footer = ({targetId}:{targetId:string}) => {
         </div>
         {/* 4th part */}
         <div>
-          <h2 className="text-lg font-bold">ติดต่อเรา</h2>
+          <h3 className="text-lg font-bold">ติดต่อเรา</h3>
           <div className="mt-6">
-            <h3 className="text-sm text-gray-600">โทร | tel</h3>
-            <h4 className="text-base font-bold text-blue-950 mt-1">
+            <h4 className="text-sm text-gray-600">โทร | tel</h4>
+            <h5 className="text-base font-bold text-blue-950 mt-1">
               062-718-8847, 087-700-74563
-            </h4>
+            </h5>
           </div>
           <div className="mt-6">
-            <h3 className="text-sm text-gray-600">ไลน์ไอดี | Line ID </h3>
-            <h4 className="text-base font-bold text-blue-950 mt-1">
+            <h4 className="text-sm text-gray-600">ไลน์ไอดี | Line ID </h4>
+            <h5 className="text-base font-bold text-blue-950 mt-1">
               0627188847
-            </h4>
+            </h5>
           </div>
           <div className="mt-6">
-            <h2 className="text-sm text-gray-600">อีเมลล์ | Email</h2>
-            <h3 className="text-base font-bold text-blue-950 mt-1">
+            <h4 className="text-sm text-gray-600">อีเมลล์ | Email</h4>
+            <h5 className="text-base font-bold text-blue-950 mt-1">
               theeraphong.services@gmail.com
-            </h3>
+            </h5>
           </div>
           <div className="mt-6">
-            <h2 className="text-sm text-gray-600">ที่อยู่ | Address</h2>
-            <h3 className="text-base font-bold text-blue-950 mt-1">
+            <h4 className="text-sm text-gray-600">ที่อยู่ | Address</h4>
+            <h5 className="text-base font-bold text-blue-950 mt-1">
               14 หมู่ 5 ต.บางกร่าง อ.เมืองนนทบุรี จ.นนทบุรี 11000
-            </h3>
+            </h5>
           </div>
         </div>
       </div>

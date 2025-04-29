@@ -1,7 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import ContentsPage from "@/components/Home/Contents/Contents";
 import { Metadata } from "next";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify"; // ✅ server-side safe
+import Review from "@/components/Home/Reviews/Review";
 
 interface PageProps {
   params: {
@@ -12,65 +13,50 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  try {
-    const slug = decodeURIComponent((await params).slug);
+  const slug = decodeURIComponent(params.slug);
 
-    const data = await prisma.service.findFirst({
-      where: { serviceName: { service_link: slug } },
-      select: {
-        kw_title: true,
-        kw_des: true,
-        // Add other fields you need for metadata
-      },
-    });
+  const data = await prisma.service.findFirst({
+    where: { serviceName: { service_link: slug } },
+    select: {
+      kw_title: true,
+      kw_des: true,
+    },
+  });
 
-    if (!data) {
-      return {
-        title: "Not Found",
-        description: "The page you are looking for does not exist.",
-        robots: {
-          index: false,
-          follow: false,
-        },
-      };
-    }
-
+  if (!data) {
     return {
-      title: data.kw_title || "Default Title",
-      description: data.kw_des || "Default description",
-      alternates: {
-        canonical: `/services/${encodeURIComponent(slug)}`,
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+      robots: {
+        index: false,
+        follow: false,
       },
-    };
-  } catch (error) {
-    console.error("Error generating metadata:", error);
-    return {
-      title: "Error",
-      description: "An error occurred while loading this page.",
     };
   }
+
+  return {
+    title: data.kw_title || "Default Title",
+    description: data.kw_des || "Default description",
+    alternates: {
+      canonical: `/services/${encodeURIComponent(slug)}`,
+    },
+  };
 }
 
 export async function generateStaticParams() {
-  try {
-    const services = await prisma.service.findMany();
+  const services = await prisma.service.findMany();
 
-    return services.map((service) => ({
-      slug: service.kw_title, // or service.service_id, if that's what you need
-    }));
-  } catch (error) {
-    console.error("Error fetching services:", error);
-    return [];
-  }
+  return services.map((service) => ({
+    slug: service.kw_title,
+  }));
 }
 
-const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params; // ✅ ต้อง await params ทั้ง object
-  // ✅ ใช้ params.slug ตรงนี้
+const pageBlog = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = params;
 
   const serviceName = await prisma.serviceName.findFirst({
     where: {
-      service_link: slug, // ✅ slug เป็น string แล้ว OK!
+      service_link: slug,
     },
     include: {
       Service: true,
@@ -80,10 +66,24 @@ const pageBlog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   if (!serviceName) {
     return <div>Service not found</div>;
   }
+
+  // 🔥 Sanitize content here server-side
+  const sanitizedService = {
+    ...serviceName.Service[0],
+    kw_h1: DOMPurify.sanitize(serviceName.Service[0].kw_h1 ?? ""),
+    kw_top1: DOMPurify.sanitize(serviceName.Service[0].kw_top1 ?? ""),
+    kw_con1: DOMPurify.sanitize(serviceName.Service[0].kw_con1 ?? ""),
+    kw_top2: DOMPurify.sanitize(serviceName.Service[0].kw_top2 ?? ""),
+    kw_con2: DOMPurify.sanitize(serviceName.Service[0].kw_con2 ?? ""),
+  };
+
   return (
-    <main className="max-w-3xl mx-auto px-4 pt-[15vh] pb-20">
-      <ContentsPage service={serviceName.Service[0]} />
-    </main>
+    <>
+      <main className="max-w-3xl mx-auto px-4 pt-[15vh] pb-20">
+        <ContentsPage service={sanitizedService} />
+      </main>
+      <Review />
+    </>
   );
 };
 
