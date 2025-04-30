@@ -43,9 +43,9 @@ const Slide: React.FC<SlideProps> = ({ data, dataType }) => {
         {dataType === "service" &&
           (data as FullServiceProps[]).map((service) => {
             const firstImage = service.kw_img1
-              ? `/${service.kw_img1}`
+              ? `http://kraison.thddns.net:3314/theeraphong/${service.kw_img1}`
               : service.ImageUpload?.[0]?.img_url
-              ? `/${service.ImageUpload[0].img_url}`
+              ? `http://kraison.thddns.net:3314/theeraphong//${service.ImageUpload[0].img_url}`
               : fallbackImage;
 
             return (
@@ -68,9 +68,9 @@ const Slide: React.FC<SlideProps> = ({ data, dataType }) => {
                       className="h-full w-full object-cover rounded-lg"
                     />
                   </div>
-                  <h1 className="text-lg font-semibold mt-4 line-clamp-1">
+                  <div className="text-lg font-semibold mt-4 line-clamp-1">
                     {service.serviceName?.service_name || "No Service Name"}
-                  </h1>
+                  </div>
                   <p className="text-sm text-gray-600 line-clamp-2 truncate">
                     {service.kw_h1}
                   </p>
@@ -89,7 +89,7 @@ const Slide: React.FC<SlideProps> = ({ data, dataType }) => {
               <div className="relative h-[400px]">
                 <div className="absolute inset-0 bg-black opacity-25 rounded-lg"></div>
                 <Image
-                  src={`/${image.img_url}`}
+                  src={`http://kraison.thddns.net:3314/theeraphong/${image.img_url}`}
                   alt={image.location}
                   width={500}
                   height={500}
@@ -97,9 +97,9 @@ const Slide: React.FC<SlideProps> = ({ data, dataType }) => {
                   loading="lazy"
                 />
               </div>
-              <h1 className="text-lg font-semibold mt-4 line-clamp-1">
+              <div className="text-lg font-semibold mt-4 line-clamp-1">
                 {image.location}
-              </h1>
+              </div>
               <p className="text-sm text-gray-600 line-clamp-2 truncate">
                 {image.worked_date
                   ? image.worked_date.toString().slice(0, 10)
@@ -138,9 +138,9 @@ const Slide: React.FC<SlideProps> = ({ data, dataType }) => {
                       loading="lazy"
                     />
                   </div>
-                  <h1 className="text-lg font-semibold mt-4 line-clamp-1">
+                  <div className="text-lg font-semibold mt-4 line-clamp-1">
                     {blog.title || "No Title"}
-                  </h1>
+                  </div>
                   <p className="text-sm text-gray-600 line-clamp-2 truncate">
                     {blog.updated_at
                       ? blog.updated_at.toString().slice(0, 10)

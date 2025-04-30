@@ -17,10 +17,10 @@ const SectionHeading:React.FC<SlideItemProps> = ({ targetId,data,heading,title,d
   
   return (
     <div id={targetId} className="w-[80%] mx-auto pt-[10vh]">
-      <h1 className="text-xl sm:text-3xl text-blue-950 font-bold">{heading}</h1>
-      <p className="mt-2 text-gray-700 sm:text-base text-sm font-medium" dangerouslySetInnerHTML={{ __html: title || ""}}>
+      <div className="text-xl sm:text-3xl text-blue-950 font-bold">{heading}</div>
+      <div className="mt-2 text-gray-700 sm:text-base text-sm font-medium" dangerouslySetInnerHTML={{ __html: title || ""}}>
        
-      </p>
+      </div>
       {data && <Slide data={data} dataType={dataType} />}
     </div>
   );

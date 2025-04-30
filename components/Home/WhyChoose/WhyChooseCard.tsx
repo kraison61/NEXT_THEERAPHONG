@@ -19,12 +19,12 @@ const WhyChooseCard = ({ image, title, description }: Props) => {
         className="mx-auto"
       />
       {/* Content */}
-      <h1 className="mt-6 text-center text-gray-900 font-medium text-lg">
+      <h2 className="mt-6 text-center text-gray-900 font-medium text-lg">
         {title}
-      </h1>
-      <p className="mt-2 text-center text-xs font-medium text-gray-700">
+      </h2>
+      <h3 className="mt-2 text-center text-xs font-medium text-gray-700">
         {description}
-      </p>
+      </h3>
     </div>
   );
 };

@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { uploadFile } from "./actions";
+import Image from "next/image";
 
 export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -21,6 +22,9 @@ export default function UploadPage() {
       />
       <button type="submit">Upload</button>
     </form>
+    <div>
+    <Image src="http://kraison.thddns.net:3314/theeraphong/image/services/1701791058183067.webp" width={700} height={700} alt="MinIO" />
+    </div>
     </div>
   );
 }

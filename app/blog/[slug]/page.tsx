@@ -13,6 +13,7 @@ interface BlogArticle {
   content: string;
   image: string | null;
   created_at: Date | null;
+  description: string | null
   serviceName: {
     service_name: string;
   } | null;
@@ -79,6 +80,8 @@ export default async function BlogDetailPage({ params }: Props) {
         ? articleData.created_at.toLocaleDateString('th-TH')
         : "ไม่ระบุวันที่",
       category: articleData.serviceName?.service_name || "ไม่ระบุหมวดหมู่",
+      description: articleData.description
+    
     };
 
     return (

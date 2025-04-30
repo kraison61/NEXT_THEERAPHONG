@@ -28,7 +28,7 @@ const ContentsPage = ({ service }: ContentsPageProps) => {
       <section className="mb-20">
         <div className="overflow-hidden shadow-md rounded-xl md:float-left md:mr-6 md:mb-4 md:w-1/3 w-full">
           <Image
-            src={`/${service.kw_img1 || "images/n1.jpg"}`}
+            src={`http://kraison.thddns.net:3314/theeraphong/${service.kw_img1 || "images/n1.jpg"}`}
             alt="ภาพประกอบบริการ"
             width={800}
             height={500}
@@ -52,7 +52,7 @@ const ContentsPage = ({ service }: ContentsPageProps) => {
       <section className="mb-20">
         <div className="overflow-hidden shadow-md rounded-xl md:float-left md:mr-6 md:mb-4 md:w-1/3 w-full">
           <Image
-            src={`/${service.kw_img2 || "images/n1.jpg"}`}
+            src={`http://kraison.thddns.net:3314/theeraphong/${service.kw_img2 || "images/n1.jpg"}`}
             alt="ภาพประกอบบริการ"
             width={800}
             height={500}
