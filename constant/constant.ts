@@ -6,23 +6,23 @@ export const navLinks = [
   },
   {
     id: 2,
-    url: "/about",
-    label: "About",
-  },
-  {
-    id: 3,
     url: "/#servicesId",
     label: "บริการ",
   },
   {
-    id: 4,
+    id: 3,
     url: "/#blogsId",
     label: "บทความ",
   },
   {
-    id: 5,
+    id: 4,
     url: "/#imagesId",
     label: "รูปภาพ",
+  },
+  {
+    id: 5,
+    url: "/about",
+    label: "เกี่ยวกับเรา",
   },
   {
     id: 6,

@@ -13,23 +13,15 @@ export const metadata: Metadata = {
 const pageAbout = () => {
   return (
     <div>
-      <main className="max-w-5xl mx-auto px-4 pt-[15vh] pb-20">
-        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16">
+      <main className="max-w-5xl mx-auto px-4 pt-[20vh] pb-20">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16 ">
           เกี่ยวกับ บริษัท ธีรพงษ์เซอร์วิส จำกัด (Theeraphong Co., Ltd.)
         </h1>
 
         <div className="space-y-24">
           {/* Section 1 */}
           <section className="flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/image/pages/ruk-02.jpg"
-                alt="ภาพประกอบบริการ"
-                width={800}
-                height={500}
-                className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
-              />
-            </div>
+            
             <div className="w-full md:w-1/2">
               <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
                 พันธกิจของเรา (Our Mission)
@@ -68,6 +60,15 @@ const pageAbout = () => {
                 </li>
                 <li>💯 รับประกันคุณภาพงาน มาตรฐานดี ราคายุติธรรม</li>
               </ul>
+            </div>
+            <div className="w-full md:w-1/2 overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/image/pages/ruk-02.jpg"
+                alt="ภาพประกอบบริการ"
+                width={800}
+                height={500}
+                className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+              />
             </div>
           </section>
 
@@ -113,7 +114,7 @@ const pageAbout = () => {
               </strong>
             </p>
             <p>
-              📞 โทร: 08x-xxx-xxxx
+              📞 โทร: 061-718-8847
               <br />
               📧 อีเมล: theeraphong.services@gmail.com
               <br />

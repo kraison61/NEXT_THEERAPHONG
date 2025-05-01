@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroProps, defaultHeroProps } from "@/data/data";
 import { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
 
 const Hero = ({
   title = defaultHeroProps.title,
@@ -18,7 +19,8 @@ const Hero = ({
   let cleanSubtitle = subtitle ?? '';
 
   if (isClient) {
-    const DOMPurify = require('dompurify');
+    
+    
     cleanTitle = DOMPurify.sanitize(cleanTitle);
     cleanSubtitle = DOMPurify.sanitize(cleanSubtitle, {
       ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'ul', 'li'],
