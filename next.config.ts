@@ -1,17 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+// next.config.js
+module.exports = {
   images: {
     remotePatterns: [
       {
-        // protocol: 'https',
-        // hostname: '*.public.blob.vercel-storage.com',
         protocol: 'http',
-        hostname: 'kraison.thddns.net',
+        hostname: '159.223.203.178',
+        port: '9000',
+        pathname: '/theeraphong/**',
       },
     ],
+    formats: ['image/webp'],  // Or add 'image/avif'
+    minimumCacheTTL: 60,
   },
-};
-
-export default nextConfig;
+}

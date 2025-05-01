@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { ImageUploadProps, FullServiceProps, BlogProps } from "@/data/data"; // 🟢 เปลี่ยนจาก ServiceProps → FullServiceProps
 
+
 type HomeProps = {
   services: FullServiceProps[]; // ข้อมูล Services พร้อม ServiceName และ ImageUpload
   blogs: BlogProps[]; // ข้อมูล Blogs พร้อม ServiceName
@@ -20,7 +21,7 @@ const Home: React.FC<HomeProps> = ({ services, images, blogs }) => {
     const initAOS = async () => {
       await import("aos");
       AOS.init({
-        duration: 1000,
+        duration: 5000,
         easing: "ease",
         once: true,
         anchorPlacement: "top-bottom",

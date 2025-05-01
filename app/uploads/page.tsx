@@ -5,6 +5,8 @@ import { useState } from "react";
 import { uploadFile } from "./actions";
 import Image from "next/image";
 
+const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
 export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
 
@@ -23,7 +25,9 @@ export default function UploadPage() {
       <button type="submit">Upload</button>
     </form>
     <div>
-    <Image src="http://kraison.thddns.net:3314/theeraphong/image/services/1701791058183067.webp" width={700} height={700} alt="MinIO" />
+    <Image src={`${imgUrl}/services/1701791058183067.webp`} width={700} height={700} alt="MinIO" />
+    {/* <Image src={`http://159.223.203.178:9000/theeraphong/services/1701791058183067.webp`} width={700} height={700} alt="MinIO" /> */}
+    {imgUrl}
     </div>
     </div>
   );

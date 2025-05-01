@@ -13,7 +13,6 @@ type SlideItemProps = {
 
 
 const SectionHeading:React.FC<SlideItemProps> = ({ targetId,data,heading,title,dataType }) => {
-  console.log(data)
   
   return (
     <div id={targetId} className="w-[80%] mx-auto pt-[10vh]">
