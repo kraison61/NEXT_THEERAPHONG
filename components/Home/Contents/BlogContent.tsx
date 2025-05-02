@@ -3,7 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
-import DOMPurify from "dompurify";
+import { window } from "globalthis";
+import createDOMPurify from "dompurify";
+import { decode } from "he"; // ✅ สำหรับ unescape HTML entities
+
+const DOMPurify = createDOMPurify(window);
 
 interface ArticleProps {
   article: {
@@ -21,7 +25,7 @@ export default function BlogContent({
 }: {
   article: ArticleProps["article"];
 }) {
-  // Sanitize and normalize image path
+  // ✅ Sanitize and normalize image path
   const imageSrc = useMemo(() => {
     if (!article.image) return "/default-blog-image.jpg";
     const cleanPath = DOMPurify.sanitize(article.image);
@@ -30,16 +34,20 @@ export default function BlogContent({
       : `/${cleanPath}`;
   }, [article.image]);
 
-  // Sanitize and format content
+  // ✅ Sanitize and format content with HTML entity decoding
   const sanitizedContent = useMemo(() => {
-    const dirty = article.content.replace(/\n/g, "<br>");
+    const unescaped = decode(article.content); // <-- ถ้า content มี &lt;img&gt;
+    const dirty = unescaped.replace(/\n/g, "<br>");
     return DOMPurify.sanitize(dirty, {
-      ALLOWED_TAGS: ["br", "p", "strong", "em", "ul", "ol", "li", "a"],
-      ALLOWED_ATTR: ["href", "target", "rel"],
+      ALLOWED_TAGS: [
+        "br", "p", "strong", "em", "ul", "ol", "li",
+        "a", "img", "h1", "h2", "h3"
+      ],
+      ALLOWED_ATTR: ["href", "target", "rel", "src", "alt", "title"],
     });
   }, [article.content]);
 
-  // Sanitize title
+  // ✅ Sanitize title
   const cleanTitle = useMemo(() => {
     return DOMPurify.sanitize(article.title);
   }, [article.title]);
@@ -56,15 +64,10 @@ export default function BlogContent({
           </h1>
 
           <div className="flex flex-col sm:flex-row gap-2 text-sm text-gray-500 mb-6">
-            <span
-              className="inline-flex items-center"
-              itemProp="articleSection"
-            >
-              {/* ไอคอน category */}
+            <span className="inline-flex items-center" itemProp="articleSection">
               {DOMPurify.sanitize(article.category)}
             </span>
             <span className="inline-flex items-center">
-              {/* ไอคอน date */}
               <time dateTime={article.date} itemProp="datePublished">
                 {DOMPurify.sanitize(article.date)}
               </time>
@@ -99,7 +102,6 @@ export default function BlogContent({
             className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
             aria-label="กลับไปยังหน้าบทความทั้งหมด"
           >
-            {/* ไอคอน back */}
             กลับไปยังหน้าบทความทั้งหมด
           </Link>
         </footer>

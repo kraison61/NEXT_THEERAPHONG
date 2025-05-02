@@ -38,7 +38,7 @@ const ReviewSlider = () => {
                 <div className="mt-10">
                   <div className="flex items-center space-x-4">
                     <Image
-                      src={data.image}
+                      src="/images/user.png"
                       width={60}
                       height={60}
                       alt="client"
