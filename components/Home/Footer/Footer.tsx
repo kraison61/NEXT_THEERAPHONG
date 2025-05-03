@@ -1,8 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaTiktok } from "react-icons/fa";
+import Image from "next/image";
 
-const Footer = ({targetId}:{targetId:string}) => {
+const imgUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+
+const Footer = ({ targetId }: { targetId: string }) => {
   return (
     <div id={targetId} className="pt-16 pb-16">
       <div className="w-[80%] mx-auto items-start grid-cols-1 sm:grid-cols-2 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -17,16 +20,15 @@ const Footer = ({targetId}:{targetId:string}) => {
         <div className="space-y-5">
           <h3 className="text-lg font-bold">Support</h3>
           <p className="text-gray-800 font-medium cursor-pointer text-sm hover:text-blue-950">
-          <Link href="/#servicesId">บริการต่าง ๆ</Link>
+            <Link href="/#servicesId">บริการต่าง ๆ</Link>
           </p>
-                  </div>
+        </div>
         {/* 3rd part */}
         <div className="space-y-5">
           <h3 className="text-lg font-bold">Other Services</h3>
           <p className="text-gray-800 font-medium cursor-pointer text-sm hover:text-blue-950">
-          <Link href="/#blogsId">ข่าวสาร และบทความ</Link>
+            <Link href="/#blogsId">ข่าวสาร และบทความ</Link>
           </p>
-          
         </div>
         {/* 4th part */}
         <div>
@@ -37,12 +39,29 @@ const Footer = ({targetId}:{targetId:string}) => {
               062-718-8847, 087-700-74563
             </h5>
           </div>
-          <div className="mt-6">
-            <h4 className="text-sm text-gray-600">ไลน์ไอดี | Line ID </h4>
-            <h5 className="text-base font-bold text-blue-950 mt-1">
-              0627188847
-            </h5>
+          <div className="mt-6 flex items-start justify-between">
+            {/* ซ้าย: ข้อความ */}
+            <div>
+              <h4 className="text-sm text-gray-600">ไลน์ไอดี | Line ID</h4>
+              <Link href="https://line.me/ti/p/h9SHumuTEB">
+                <h5 className="text-base font-bold text-blue-950 mt-1">
+                  0627188847
+                </h5>
+              </Link>
+            </div>
+
+            {/* ขวา: รูปภาพ */}
+            <div className="w-24 h-24 rounded overflow-hidden bg-gray-100">
+              <Image
+                src={`${imgUrl}/image/lineid.webp`}
+                alt="Line QR"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
           </div>
+
           <div className="mt-6">
             <h4 className="text-sm text-gray-600">อีเมลล์ | Email</h4>
             <h5 className="text-base font-bold text-blue-950 mt-1">

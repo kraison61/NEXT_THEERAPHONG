@@ -1520,76 +1520,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type ServiceNameCountOutputType
-   */
-
-  export type ServiceNameCountOutputType = {
-    Service: number
-    Blog: number
-  }
-
-  export type ServiceNameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Service?: boolean | ServiceNameCountOutputTypeCountServiceArgs
-    Blog?: boolean | ServiceNameCountOutputTypeCountBlogArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ServiceNameCountOutputType without action
-   */
-  export type ServiceNameCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceNameCountOutputType
-     */
-    select?: ServiceNameCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ServiceNameCountOutputType without action
-   */
-  export type ServiceNameCountOutputTypeCountServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ServiceWhereInput
-  }
-
-  /**
-   * ServiceNameCountOutputType without action
-   */
-  export type ServiceNameCountOutputTypeCountBlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BlogWhereInput
-  }
-
-
-  /**
-   * Count Type ServiceCountOutputType
-   */
-
-  export type ServiceCountOutputType = {
-    ImageUpload: number
-  }
-
-  export type ServiceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ImageUpload?: boolean | ServiceCountOutputTypeCountImageUploadArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ServiceCountOutputType without action
-   */
-  export type ServiceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCountOutputType
-     */
-    select?: ServiceCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ServiceCountOutputType without action
-   */
-  export type ServiceCountOutputTypeCountImageUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ImageUploadWhereInput
-  }
-
 
   /**
    * Models
@@ -2585,7 +2515,7 @@ export namespace Prisma {
 
   export type BlogSumAggregateOutputType = {
     id: bigint | null
-    servicename_id: bigint | null
+    servicename_id: number | null
   }
 
   export type BlogMinAggregateOutputType = {
@@ -2594,7 +2524,7 @@ export namespace Prisma {
     description: string | null
     content: string | null
     image: string | null
-    servicename_id: bigint | null
+    servicename_id: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -2605,7 +2535,7 @@ export namespace Prisma {
     description: string | null
     content: string | null
     image: string | null
-    servicename_id: bigint | null
+    servicename_id: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -2759,7 +2689,7 @@ export namespace Prisma {
     description: string
     content: string
     image: string
-    servicename_id: bigint
+    servicename_id: number
     created_at: Date | null
     updated_at: Date | null
     _count: BlogCountAggregateOutputType | null
@@ -2792,7 +2722,6 @@ export namespace Prisma {
     servicename_id?: boolean
     created_at?: boolean
     updated_at?: boolean
-    serviceName?: boolean | ServiceNameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blog"]>
 
 
@@ -2809,22 +2738,17 @@ export namespace Prisma {
   }
 
   export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "content" | "image" | "servicename_id" | "created_at" | "updated_at", ExtArgs["result"]["blog"]>
-  export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    serviceName?: boolean | ServiceNameDefaultArgs<ExtArgs>
-  }
 
   export type $BlogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Blog"
-    objects: {
-      serviceName: Prisma.$ServiceNamePayload<ExtArgs>
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       title: string
       description: string
       content: string
       image: string
-      servicename_id: bigint
+      servicename_id: number
       created_at: Date | null
       updated_at: Date | null
     }, ExtArgs["result"]["blog"]>
@@ -3167,7 +3091,6 @@ export namespace Prisma {
    */
   export interface Prisma__BlogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    serviceName<T extends ServiceNameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceNameDefaultArgs<ExtArgs>>): Prisma__ServiceNameClient<$Result.GetResult<Prisma.$ServiceNamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3202,7 +3125,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Blog", 'String'>
     readonly content: FieldRef<"Blog", 'String'>
     readonly image: FieldRef<"Blog", 'String'>
-    readonly servicename_id: FieldRef<"Blog", 'BigInt'>
+    readonly servicename_id: FieldRef<"Blog", 'Int'>
     readonly created_at: FieldRef<"Blog", 'DateTime'>
     readonly updated_at: FieldRef<"Blog", 'DateTime'>
   }
@@ -3222,10 +3145,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * Filter, which Blog to fetch.
      */
     where: BlogWhereUniqueInput
@@ -3244,10 +3163,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * Filter, which Blog to fetch.
      */
     where: BlogWhereUniqueInput
@@ -3265,10 +3180,6 @@ export namespace Prisma {
      * Omit specific fields from the Blog
      */
     omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
     /**
      * Filter, which Blog to fetch.
      */
@@ -3318,10 +3229,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * Filter, which Blog to fetch.
      */
     where?: BlogWhereInput
@@ -3370,10 +3277,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * Filter, which Blogs to fetch.
      */
     where?: BlogWhereInput
@@ -3417,10 +3320,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * The data needed to create a Blog.
      */
     data: XOR<BlogCreateInput, BlogUncheckedCreateInput>
@@ -3449,10 +3348,6 @@ export namespace Prisma {
      * Omit specific fields from the Blog
      */
     omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
     /**
      * The data needed to update a Blog.
      */
@@ -3494,10 +3389,6 @@ export namespace Prisma {
      */
     omit?: BlogOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    /**
      * The filter to search for the Blog to update in case it exists.
      */
     where: BlogWhereUniqueInput
@@ -3523,10 +3414,6 @@ export namespace Prisma {
      * Omit specific fields from the Blog
      */
     omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
     /**
      * Filter which Blog to delete.
      */
@@ -3559,10 +3446,6 @@ export namespace Prisma {
      * Omit specific fields from the Blog
      */
     omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
   }
 
 
@@ -3764,9 +3647,6 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     service_link?: boolean
-    Service?: boolean | ServiceName$ServiceArgs<ExtArgs>
-    Blog?: boolean | ServiceName$BlogArgs<ExtArgs>
-    _count?: boolean | ServiceNameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serviceName"]>
 
 
@@ -3780,18 +3660,10 @@ export namespace Prisma {
   }
 
   export type ServiceNameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service_name" | "created_at" | "updated_at" | "service_link", ExtArgs["result"]["serviceName"]>
-  export type ServiceNameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Service?: boolean | ServiceName$ServiceArgs<ExtArgs>
-    Blog?: boolean | ServiceName$BlogArgs<ExtArgs>
-    _count?: boolean | ServiceNameCountOutputTypeDefaultArgs<ExtArgs>
-  }
 
   export type $ServiceNamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ServiceName"
-    objects: {
-      Service: Prisma.$ServicePayload<ExtArgs>[]
-      Blog: Prisma.$BlogPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       service_name: string
@@ -4138,8 +4010,6 @@ export namespace Prisma {
    */
   export interface Prisma__ServiceNameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Service<T extends ServiceName$ServiceArgs<ExtArgs> = {}>(args?: Subset<T, ServiceName$ServiceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Blog<T extends ServiceName$BlogArgs<ExtArgs> = {}>(args?: Subset<T, ServiceName$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4191,10 +4061,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * Filter, which ServiceName to fetch.
      */
     where: ServiceNameWhereUniqueInput
@@ -4213,10 +4079,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * Filter, which ServiceName to fetch.
      */
     where: ServiceNameWhereUniqueInput
@@ -4234,10 +4096,6 @@ export namespace Prisma {
      * Omit specific fields from the ServiceName
      */
     omit?: ServiceNameOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
     /**
      * Filter, which ServiceName to fetch.
      */
@@ -4287,10 +4145,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * Filter, which ServiceName to fetch.
      */
     where?: ServiceNameWhereInput
@@ -4339,10 +4193,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * Filter, which ServiceNames to fetch.
      */
     where?: ServiceNameWhereInput
@@ -4386,10 +4236,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * The data needed to create a ServiceName.
      */
     data: XOR<ServiceNameCreateInput, ServiceNameUncheckedCreateInput>
@@ -4418,10 +4264,6 @@ export namespace Prisma {
      * Omit specific fields from the ServiceName
      */
     omit?: ServiceNameOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
     /**
      * The data needed to update a ServiceName.
      */
@@ -4463,10 +4305,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * The filter to search for the ServiceName to update in case it exists.
      */
     where: ServiceNameWhereUniqueInput
@@ -4493,10 +4331,6 @@ export namespace Prisma {
      */
     omit?: ServiceNameOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
-    /**
      * Filter which ServiceName to delete.
      */
     where: ServiceNameWhereUniqueInput
@@ -4517,54 +4351,6 @@ export namespace Prisma {
   }
 
   /**
-   * ServiceName.Service
-   */
-  export type ServiceName$ServiceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Service
-     */
-    select?: ServiceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Service
-     */
-    omit?: ServiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    where?: ServiceWhereInput
-    orderBy?: ServiceOrderByWithRelationInput | ServiceOrderByWithRelationInput[]
-    cursor?: ServiceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ServiceScalarFieldEnum | ServiceScalarFieldEnum[]
-  }
-
-  /**
-   * ServiceName.Blog
-   */
-  export type ServiceName$BlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Blog
-     */
-    select?: BlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Blog
-     */
-    omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    where?: BlogWhereInput
-    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
-    cursor?: BlogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
-  }
-
-  /**
    * ServiceName without action
    */
   export type ServiceNameDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4576,10 +4362,6 @@ export namespace Prisma {
      * Omit specific fields from the ServiceName
      */
     omit?: ServiceNameOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceNameInclude<ExtArgs> | null
   }
 
 
@@ -4865,9 +4647,6 @@ export namespace Prisma {
     updated_at?: boolean
     topalt?: boolean
     bottomalt?: boolean
-    serviceName?: boolean | ServiceNameDefaultArgs<ExtArgs>
-    ImageUpload?: boolean | Service$ImageUploadArgs<ExtArgs>
-    _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
 
 
@@ -4891,18 +4670,10 @@ export namespace Prisma {
   }
 
   export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service_id" | "kw_title" | "kw_des" | "kw_h1" | "kw_top1" | "kw_top2" | "kw_con1" | "kw_con2" | "kw_img1" | "kw_img2" | "created_at" | "updated_at" | "topalt" | "bottomalt", ExtArgs["result"]["service"]>
-  export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    serviceName?: boolean | ServiceNameDefaultArgs<ExtArgs>
-    ImageUpload?: boolean | Service$ImageUploadArgs<ExtArgs>
-    _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
-  }
 
   export type $ServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Service"
-    objects: {
-      serviceName: Prisma.$ServiceNamePayload<ExtArgs>
-      ImageUpload: Prisma.$ImageUploadPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       service_id: bigint
@@ -5259,8 +5030,6 @@ export namespace Prisma {
    */
   export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    serviceName<T extends ServiceNameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServiceNameDefaultArgs<ExtArgs>>): Prisma__ServiceNameClient<$Result.GetResult<Prisma.$ServiceNamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    ImageUpload<T extends Service$ImageUploadArgs<ExtArgs> = {}>(args?: Subset<T, Service$ImageUploadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImageUploadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5322,10 +5091,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * Filter, which Service to fetch.
      */
     where: ServiceWhereUniqueInput
@@ -5344,10 +5109,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * Filter, which Service to fetch.
      */
     where: ServiceWhereUniqueInput
@@ -5365,10 +5126,6 @@ export namespace Prisma {
      * Omit specific fields from the Service
      */
     omit?: ServiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
     /**
      * Filter, which Service to fetch.
      */
@@ -5418,10 +5175,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * Filter, which Service to fetch.
      */
     where?: ServiceWhereInput
@@ -5470,10 +5223,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * Filter, which Services to fetch.
      */
     where?: ServiceWhereInput
@@ -5517,10 +5266,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * The data needed to create a Service.
      */
     data: XOR<ServiceCreateInput, ServiceUncheckedCreateInput>
@@ -5549,10 +5294,6 @@ export namespace Prisma {
      * Omit specific fields from the Service
      */
     omit?: ServiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
     /**
      * The data needed to update a Service.
      */
@@ -5594,10 +5335,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * The filter to search for the Service to update in case it exists.
      */
     where: ServiceWhereUniqueInput
@@ -5624,10 +5361,6 @@ export namespace Prisma {
      */
     omit?: ServiceOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    /**
      * Filter which Service to delete.
      */
     where: ServiceWhereUniqueInput
@@ -5648,30 +5381,6 @@ export namespace Prisma {
   }
 
   /**
-   * Service.ImageUpload
-   */
-  export type Service$ImageUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ImageUpload
-     */
-    select?: ImageUploadSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ImageUpload
-     */
-    omit?: ImageUploadOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    where?: ImageUploadWhereInput
-    orderBy?: ImageUploadOrderByWithRelationInput | ImageUploadOrderByWithRelationInput[]
-    cursor?: ImageUploadWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ImageUploadScalarFieldEnum | ImageUploadScalarFieldEnum[]
-  }
-
-  /**
    * Service without action
    */
   export type ServiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5683,10 +5392,6 @@ export namespace Prisma {
      * Omit specific fields from the Service
      */
     omit?: ServiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
   }
 
 
@@ -5709,12 +5414,12 @@ export namespace Prisma {
 
   export type ImageUploadSumAggregateOutputType = {
     id: bigint | null
-    service_id: bigint | null
+    service_id: number | null
   }
 
   export type ImageUploadMinAggregateOutputType = {
     id: bigint | null
-    service_id: bigint | null
+    service_id: number | null
     img_url: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -5724,7 +5429,7 @@ export namespace Prisma {
 
   export type ImageUploadMaxAggregateOutputType = {
     id: bigint | null
-    service_id: bigint | null
+    service_id: number | null
     img_url: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -5873,7 +5578,7 @@ export namespace Prisma {
 
   export type ImageUploadGroupByOutputType = {
     id: bigint
-    service_id: bigint
+    service_id: number
     img_url: string
     created_at: Date | null
     updated_at: Date | null
@@ -5908,7 +5613,6 @@ export namespace Prisma {
     updated_at?: boolean
     location?: boolean
     worked_date?: boolean
-    service?: boolean | ImageUpload$serviceArgs<ExtArgs>
   }, ExtArgs["result"]["imageUpload"]>
 
 
@@ -5924,18 +5628,13 @@ export namespace Prisma {
   }
 
   export type ImageUploadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "service_id" | "img_url" | "created_at" | "updated_at" | "location" | "worked_date", ExtArgs["result"]["imageUpload"]>
-  export type ImageUploadInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    service?: boolean | ImageUpload$serviceArgs<ExtArgs>
-  }
 
   export type $ImageUploadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ImageUpload"
-    objects: {
-      service: Prisma.$ServicePayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      service_id: bigint
+      service_id: number
       img_url: string
       created_at: Date | null
       updated_at: Date | null
@@ -6281,7 +5980,6 @@ export namespace Prisma {
    */
   export interface Prisma__ImageUploadClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    service<T extends ImageUpload$serviceArgs<ExtArgs> = {}>(args?: Subset<T, ImageUpload$serviceArgs<ExtArgs>>): Prisma__ServiceClient<$Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6312,7 +6010,7 @@ export namespace Prisma {
    */
   interface ImageUploadFieldRefs {
     readonly id: FieldRef<"ImageUpload", 'BigInt'>
-    readonly service_id: FieldRef<"ImageUpload", 'BigInt'>
+    readonly service_id: FieldRef<"ImageUpload", 'Int'>
     readonly img_url: FieldRef<"ImageUpload", 'String'>
     readonly created_at: FieldRef<"ImageUpload", 'DateTime'>
     readonly updated_at: FieldRef<"ImageUpload", 'DateTime'>
@@ -6335,10 +6033,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * Filter, which ImageUpload to fetch.
      */
     where: ImageUploadWhereUniqueInput
@@ -6357,10 +6051,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * Filter, which ImageUpload to fetch.
      */
     where: ImageUploadWhereUniqueInput
@@ -6378,10 +6068,6 @@ export namespace Prisma {
      * Omit specific fields from the ImageUpload
      */
     omit?: ImageUploadOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
     /**
      * Filter, which ImageUpload to fetch.
      */
@@ -6431,10 +6117,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * Filter, which ImageUpload to fetch.
      */
     where?: ImageUploadWhereInput
@@ -6483,10 +6165,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * Filter, which ImageUploads to fetch.
      */
     where?: ImageUploadWhereInput
@@ -6530,10 +6208,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * The data needed to create a ImageUpload.
      */
     data: XOR<ImageUploadCreateInput, ImageUploadUncheckedCreateInput>
@@ -6562,10 +6236,6 @@ export namespace Prisma {
      * Omit specific fields from the ImageUpload
      */
     omit?: ImageUploadOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
     /**
      * The data needed to update a ImageUpload.
      */
@@ -6607,10 +6277,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * The filter to search for the ImageUpload to update in case it exists.
      */
     where: ImageUploadWhereUniqueInput
@@ -6637,10 +6303,6 @@ export namespace Prisma {
      */
     omit?: ImageUploadOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
-    /**
      * Filter which ImageUpload to delete.
      */
     where: ImageUploadWhereUniqueInput
@@ -6661,25 +6323,6 @@ export namespace Prisma {
   }
 
   /**
-   * ImageUpload.service
-   */
-  export type ImageUpload$serviceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Service
-     */
-    select?: ServiceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Service
-     */
-    omit?: ServiceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    where?: ServiceWhereInput
-  }
-
-  /**
    * ImageUpload without action
    */
   export type ImageUploadDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6691,10 +6334,6 @@ export namespace Prisma {
      * Omit specific fields from the ImageUpload
      */
     omit?: ImageUploadOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ImageUploadInclude<ExtArgs> | null
   }
 
 
@@ -10808,10 +10447,9 @@ export namespace Prisma {
     description?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     image?: StringFilter<"Blog"> | string
-    servicename_id?: BigIntFilter<"Blog"> | bigint | number
+    servicename_id?: IntFilter<"Blog"> | number
     created_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
-    serviceName?: XOR<ServiceNameScalarRelationFilter, ServiceNameWhereInput>
   }
 
   export type BlogOrderByWithRelationInput = {
@@ -10823,24 +10461,22 @@ export namespace Prisma {
     servicename_id?: SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
-    serviceName?: ServiceNameOrderByWithRelationInput
     _relevance?: BlogOrderByRelevanceInput
   }
 
   export type BlogWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    title?: string
     AND?: BlogWhereInput | BlogWhereInput[]
     OR?: BlogWhereInput[]
     NOT?: BlogWhereInput | BlogWhereInput[]
+    title?: StringFilter<"Blog"> | string
     description?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     image?: StringFilter<"Blog"> | string
-    servicename_id?: BigIntFilter<"Blog"> | bigint | number
+    servicename_id?: IntFilter<"Blog"> | number
     created_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
-    serviceName?: XOR<ServiceNameScalarRelationFilter, ServiceNameWhereInput>
-  }, "id" | "title">
+  }, "id">
 
   export type BlogOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10867,7 +10503,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Blog"> | string
     content?: StringWithAggregatesFilter<"Blog"> | string
     image?: StringWithAggregatesFilter<"Blog"> | string
-    servicename_id?: BigIntWithAggregatesFilter<"Blog"> | bigint | number
+    servicename_id?: IntWithAggregatesFilter<"Blog"> | number
     created_at?: DateTimeNullableWithAggregatesFilter<"Blog"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"Blog"> | Date | string | null
   }
@@ -10881,8 +10517,6 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ServiceName"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ServiceName"> | Date | string | null
     service_link?: StringFilter<"ServiceName"> | string
-    Service?: ServiceListRelationFilter
-    Blog?: BlogListRelationFilter
   }
 
   export type ServiceNameOrderByWithRelationInput = {
@@ -10891,23 +10525,19 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     service_link?: SortOrder
-    Service?: ServiceOrderByRelationAggregateInput
-    Blog?: BlogOrderByRelationAggregateInput
     _relevance?: ServiceNameOrderByRelevanceInput
   }
 
   export type ServiceNameWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    service_link?: string
     AND?: ServiceNameWhereInput | ServiceNameWhereInput[]
     OR?: ServiceNameWhereInput[]
     NOT?: ServiceNameWhereInput | ServiceNameWhereInput[]
     service_name?: StringFilter<"ServiceName"> | string
     created_at?: DateTimeNullableFilter<"ServiceName"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ServiceName"> | Date | string | null
-    Service?: ServiceListRelationFilter
-    Blog?: BlogListRelationFilter
-  }, "id" | "service_link">
+    service_link?: StringFilter<"ServiceName"> | string
+  }, "id">
 
   export type ServiceNameOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10952,8 +10582,6 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"Service"> | Date | string | null
     topalt?: StringNullableFilter<"Service"> | string | null
     bottomalt?: StringNullableFilter<"Service"> | string | null
-    serviceName?: XOR<ServiceNameScalarRelationFilter, ServiceNameWhereInput>
-    ImageUpload?: ImageUploadListRelationFilter
   }
 
   export type ServiceOrderByWithRelationInput = {
@@ -10972,8 +10600,6 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     topalt?: SortOrderInput | SortOrder
     bottomalt?: SortOrderInput | SortOrder
-    serviceName?: ServiceNameOrderByWithRelationInput
-    ImageUpload?: ImageUploadOrderByRelationAggregateInput
     _relevance?: ServiceOrderByRelevanceInput
   }
 
@@ -10996,8 +10622,6 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"Service"> | Date | string | null
     topalt?: StringNullableFilter<"Service"> | string | null
     bottomalt?: StringNullableFilter<"Service"> | string | null
-    serviceName?: XOR<ServiceNameScalarRelationFilter, ServiceNameWhereInput>
-    ImageUpload?: ImageUploadListRelationFilter
   }, "id">
 
   export type ServiceOrderByWithAggregationInput = {
@@ -11049,13 +10673,12 @@ export namespace Prisma {
     OR?: ImageUploadWhereInput[]
     NOT?: ImageUploadWhereInput | ImageUploadWhereInput[]
     id?: BigIntFilter<"ImageUpload"> | bigint | number
-    service_id?: BigIntFilter<"ImageUpload"> | bigint | number
+    service_id?: IntFilter<"ImageUpload"> | number
     img_url?: StringFilter<"ImageUpload"> | string
     created_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
     location?: StringFilter<"ImageUpload"> | string
     worked_date?: DateTimeFilter<"ImageUpload"> | Date | string
-    service?: XOR<ServiceNullableScalarRelationFilter, ServiceWhereInput> | null
   }
 
   export type ImageUploadOrderByWithRelationInput = {
@@ -11066,7 +10689,6 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     location?: SortOrder
     worked_date?: SortOrder
-    service?: ServiceOrderByWithRelationInput
     _relevance?: ImageUploadOrderByRelevanceInput
   }
 
@@ -11075,13 +10697,12 @@ export namespace Prisma {
     AND?: ImageUploadWhereInput | ImageUploadWhereInput[]
     OR?: ImageUploadWhereInput[]
     NOT?: ImageUploadWhereInput | ImageUploadWhereInput[]
-    service_id?: BigIntFilter<"ImageUpload"> | bigint | number
+    service_id?: IntFilter<"ImageUpload"> | number
     img_url?: StringFilter<"ImageUpload"> | string
     created_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
     location?: StringFilter<"ImageUpload"> | string
     worked_date?: DateTimeFilter<"ImageUpload"> | Date | string
-    service?: XOR<ServiceNullableScalarRelationFilter, ServiceWhereInput> | null
   }, "id">
 
   export type ImageUploadOrderByWithAggregationInput = {
@@ -11104,7 +10725,7 @@ export namespace Prisma {
     OR?: ImageUploadScalarWhereWithAggregatesInput[]
     NOT?: ImageUploadScalarWhereWithAggregatesInput | ImageUploadScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"ImageUpload"> | bigint | number
-    service_id?: BigIntWithAggregatesFilter<"ImageUpload"> | bigint | number
+    service_id?: IntWithAggregatesFilter<"ImageUpload"> | number
     img_url?: StringWithAggregatesFilter<"ImageUpload"> | string
     created_at?: DateTimeNullableWithAggregatesFilter<"ImageUpload"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"ImageUpload"> | Date | string | null
@@ -11454,9 +11075,9 @@ export namespace Prisma {
     description: string
     content: string
     image: string
+    servicename_id: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    serviceName: ServiceNameCreateNestedOneWithoutBlogInput
   }
 
   export type BlogUncheckedCreateInput = {
@@ -11465,7 +11086,7 @@ export namespace Prisma {
     description: string
     content: string
     image: string
-    servicename_id: bigint | number
+    servicename_id: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -11476,9 +11097,9 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    servicename_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    serviceName?: ServiceNameUpdateOneRequiredWithoutBlogNestedInput
   }
 
   export type BlogUncheckedUpdateInput = {
@@ -11487,7 +11108,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    servicename_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    servicename_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11498,7 +11119,7 @@ export namespace Prisma {
     description: string
     content: string
     image: string
-    servicename_id: bigint | number
+    servicename_id: number
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -11509,6 +11130,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
+    servicename_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11519,7 +11141,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    servicename_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    servicename_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11530,8 +11152,6 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     service_link: string
-    Service?: ServiceCreateNestedManyWithoutServiceNameInput
-    Blog?: BlogCreateNestedManyWithoutServiceNameInput
   }
 
   export type ServiceNameUncheckedCreateInput = {
@@ -11540,8 +11160,6 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     service_link: string
-    Service?: ServiceUncheckedCreateNestedManyWithoutServiceNameInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutServiceNameInput
   }
 
   export type ServiceNameUpdateInput = {
@@ -11550,8 +11168,6 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     service_link?: StringFieldUpdateOperationsInput | string
-    Service?: ServiceUpdateManyWithoutServiceNameNestedInput
-    Blog?: BlogUpdateManyWithoutServiceNameNestedInput
   }
 
   export type ServiceNameUncheckedUpdateInput = {
@@ -11560,8 +11176,6 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     service_link?: StringFieldUpdateOperationsInput | string
-    Service?: ServiceUncheckedUpdateManyWithoutServiceNameNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutServiceNameNestedInput
   }
 
   export type ServiceNameCreateManyInput = {
@@ -11590,6 +11204,7 @@ export namespace Prisma {
 
   export type ServiceCreateInput = {
     id?: bigint | number
+    service_id: bigint | number
     kw_title: string
     kw_des: string
     kw_h1: string
@@ -11603,8 +11218,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
     topalt?: string | null
     bottomalt?: string | null
-    serviceName: ServiceNameCreateNestedOneWithoutServiceInput
-    ImageUpload?: ImageUploadCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateInput = {
@@ -11623,11 +11236,11 @@ export namespace Prisma {
     updated_at?: Date | string | null
     topalt?: string | null
     bottomalt?: string | null
-    ImageUpload?: ImageUploadUncheckedCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: BigIntFieldUpdateOperationsInput | bigint | number
     kw_title?: StringFieldUpdateOperationsInput | string
     kw_des?: StringFieldUpdateOperationsInput | string
     kw_h1?: StringFieldUpdateOperationsInput | string
@@ -11641,8 +11254,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     topalt?: NullableStringFieldUpdateOperationsInput | string | null
     bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-    serviceName?: ServiceNameUpdateOneRequiredWithoutServiceNestedInput
-    ImageUpload?: ImageUploadUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateInput = {
@@ -11661,7 +11272,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     topalt?: NullableStringFieldUpdateOperationsInput | string | null
     bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-    ImageUpload?: ImageUploadUncheckedUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceCreateManyInput = {
@@ -11684,6 +11294,7 @@ export namespace Prisma {
 
   export type ServiceUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: BigIntFieldUpdateOperationsInput | bigint | number
     kw_title?: StringFieldUpdateOperationsInput | string
     kw_des?: StringFieldUpdateOperationsInput | string
     kw_h1?: StringFieldUpdateOperationsInput | string
@@ -11719,17 +11330,17 @@ export namespace Prisma {
 
   export type ImageUploadCreateInput = {
     id?: bigint | number
+    service_id: number
     img_url: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
     location: string
     worked_date: Date | string
-    service?: ServiceCreateNestedOneWithoutImageUploadInput
   }
 
   export type ImageUploadUncheckedCreateInput = {
     id?: bigint | number
-    service_id: bigint | number
+    service_id: number
     img_url: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
@@ -11739,17 +11350,17 @@ export namespace Prisma {
 
   export type ImageUploadUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: IntFieldUpdateOperationsInput | number
     img_url?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: StringFieldUpdateOperationsInput | string
     worked_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneWithoutImageUploadNestedInput
   }
 
   export type ImageUploadUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: IntFieldUpdateOperationsInput | number
     img_url?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11759,7 +11370,7 @@ export namespace Prisma {
 
   export type ImageUploadCreateManyInput = {
     id?: bigint | number
-    service_id: bigint | number
+    service_id: number
     img_url: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
@@ -11769,6 +11380,7 @@ export namespace Prisma {
 
   export type ImageUploadUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: IntFieldUpdateOperationsInput | number
     img_url?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11778,7 +11390,7 @@ export namespace Prisma {
 
   export type ImageUploadUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    service_id?: IntFieldUpdateOperationsInput | number
     img_url?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12218,9 +11830,15 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type ServiceNameScalarRelationFilter = {
-    is?: ServiceNameWhereInput
-    isNot?: ServiceNameWhereInput
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type BlogOrderByRelevanceInput = {
@@ -12272,24 +11890,20 @@ export namespace Prisma {
     servicename_id?: SortOrder
   }
 
-  export type ServiceListRelationFilter = {
-    every?: ServiceWhereInput
-    some?: ServiceWhereInput
-    none?: ServiceWhereInput
-  }
-
-  export type BlogListRelationFilter = {
-    every?: BlogWhereInput
-    some?: BlogWhereInput
-    none?: BlogWhereInput
-  }
-
-  export type ServiceOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type BlogOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type ServiceNameOrderByRelevanceInput = {
@@ -12328,16 +11942,6 @@ export namespace Prisma {
 
   export type ServiceNameSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type ImageUploadListRelationFilter = {
-    every?: ImageUploadWhereInput
-    some?: ImageUploadWhereInput
-    none?: ImageUploadWhereInput
-  }
-
-  export type ImageUploadOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type ServiceOrderByRelevanceInput = {
@@ -12419,11 +12023,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type ServiceNullableScalarRelationFilter = {
-    is?: ServiceWhereInput | null
-    isNot?: ServiceWhereInput | null
   }
 
   export type ImageUploadOrderByRelevanceInput = {
@@ -12530,17 +12129,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type migrationsOrderByRelevanceInput = {
     fields: migrationsOrderByRelevanceFieldEnum | migrationsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -12573,22 +12161,6 @@ export namespace Prisma {
   export type migrationsSumOrderByAggregateInput = {
     id?: SortOrder
     batch?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type personal_access_tokensOrderByRelevanceInput = {
@@ -12733,186 +12305,16 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type ServiceNameCreateNestedOneWithoutBlogInput = {
-    create?: XOR<ServiceNameCreateWithoutBlogInput, ServiceNameUncheckedCreateWithoutBlogInput>
-    connectOrCreate?: ServiceNameCreateOrConnectWithoutBlogInput
-    connect?: ServiceNameWhereUniqueInput
-  }
-
-  export type ServiceNameUpdateOneRequiredWithoutBlogNestedInput = {
-    create?: XOR<ServiceNameCreateWithoutBlogInput, ServiceNameUncheckedCreateWithoutBlogInput>
-    connectOrCreate?: ServiceNameCreateOrConnectWithoutBlogInput
-    upsert?: ServiceNameUpsertWithoutBlogInput
-    connect?: ServiceNameWhereUniqueInput
-    update?: XOR<XOR<ServiceNameUpdateToOneWithWhereWithoutBlogInput, ServiceNameUpdateWithoutBlogInput>, ServiceNameUncheckedUpdateWithoutBlogInput>
-  }
-
-  export type ServiceCreateNestedManyWithoutServiceNameInput = {
-    create?: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput> | ServiceCreateWithoutServiceNameInput[] | ServiceUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceNameInput | ServiceCreateOrConnectWithoutServiceNameInput[]
-    createMany?: ServiceCreateManyServiceNameInputEnvelope
-    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-  }
-
-  export type BlogCreateNestedManyWithoutServiceNameInput = {
-    create?: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput> | BlogCreateWithoutServiceNameInput[] | BlogUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutServiceNameInput | BlogCreateOrConnectWithoutServiceNameInput[]
-    createMany?: BlogCreateManyServiceNameInputEnvelope
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-  }
-
-  export type ServiceUncheckedCreateNestedManyWithoutServiceNameInput = {
-    create?: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput> | ServiceCreateWithoutServiceNameInput[] | ServiceUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceNameInput | ServiceCreateOrConnectWithoutServiceNameInput[]
-    createMany?: ServiceCreateManyServiceNameInputEnvelope
-    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-  }
-
-  export type BlogUncheckedCreateNestedManyWithoutServiceNameInput = {
-    create?: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput> | BlogCreateWithoutServiceNameInput[] | BlogUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutServiceNameInput | BlogCreateOrConnectWithoutServiceNameInput[]
-    createMany?: BlogCreateManyServiceNameInputEnvelope
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-  }
-
-  export type ServiceUpdateManyWithoutServiceNameNestedInput = {
-    create?: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput> | ServiceCreateWithoutServiceNameInput[] | ServiceUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceNameInput | ServiceCreateOrConnectWithoutServiceNameInput[]
-    upsert?: ServiceUpsertWithWhereUniqueWithoutServiceNameInput | ServiceUpsertWithWhereUniqueWithoutServiceNameInput[]
-    createMany?: ServiceCreateManyServiceNameInputEnvelope
-    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    update?: ServiceUpdateWithWhereUniqueWithoutServiceNameInput | ServiceUpdateWithWhereUniqueWithoutServiceNameInput[]
-    updateMany?: ServiceUpdateManyWithWhereWithoutServiceNameInput | ServiceUpdateManyWithWhereWithoutServiceNameInput[]
-    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
-  }
-
-  export type BlogUpdateManyWithoutServiceNameNestedInput = {
-    create?: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput> | BlogCreateWithoutServiceNameInput[] | BlogUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutServiceNameInput | BlogCreateOrConnectWithoutServiceNameInput[]
-    upsert?: BlogUpsertWithWhereUniqueWithoutServiceNameInput | BlogUpsertWithWhereUniqueWithoutServiceNameInput[]
-    createMany?: BlogCreateManyServiceNameInputEnvelope
-    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    update?: BlogUpdateWithWhereUniqueWithoutServiceNameInput | BlogUpdateWithWhereUniqueWithoutServiceNameInput[]
-    updateMany?: BlogUpdateManyWithWhereWithoutServiceNameInput | BlogUpdateManyWithWhereWithoutServiceNameInput[]
-    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
-  }
-
-  export type ServiceUncheckedUpdateManyWithoutServiceNameNestedInput = {
-    create?: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput> | ServiceCreateWithoutServiceNameInput[] | ServiceUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: ServiceCreateOrConnectWithoutServiceNameInput | ServiceCreateOrConnectWithoutServiceNameInput[]
-    upsert?: ServiceUpsertWithWhereUniqueWithoutServiceNameInput | ServiceUpsertWithWhereUniqueWithoutServiceNameInput[]
-    createMany?: ServiceCreateManyServiceNameInputEnvelope
-    set?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    disconnect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    delete?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[]
-    update?: ServiceUpdateWithWhereUniqueWithoutServiceNameInput | ServiceUpdateWithWhereUniqueWithoutServiceNameInput[]
-    updateMany?: ServiceUpdateManyWithWhereWithoutServiceNameInput | ServiceUpdateManyWithWhereWithoutServiceNameInput[]
-    deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
-  }
-
-  export type BlogUncheckedUpdateManyWithoutServiceNameNestedInput = {
-    create?: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput> | BlogCreateWithoutServiceNameInput[] | BlogUncheckedCreateWithoutServiceNameInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutServiceNameInput | BlogCreateOrConnectWithoutServiceNameInput[]
-    upsert?: BlogUpsertWithWhereUniqueWithoutServiceNameInput | BlogUpsertWithWhereUniqueWithoutServiceNameInput[]
-    createMany?: BlogCreateManyServiceNameInputEnvelope
-    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    update?: BlogUpdateWithWhereUniqueWithoutServiceNameInput | BlogUpdateWithWhereUniqueWithoutServiceNameInput[]
-    updateMany?: BlogUpdateManyWithWhereWithoutServiceNameInput | BlogUpdateManyWithWhereWithoutServiceNameInput[]
-    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
-  }
-
-  export type ServiceNameCreateNestedOneWithoutServiceInput = {
-    create?: XOR<ServiceNameCreateWithoutServiceInput, ServiceNameUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceNameCreateOrConnectWithoutServiceInput
-    connect?: ServiceNameWhereUniqueInput
-  }
-
-  export type ImageUploadCreateNestedManyWithoutServiceInput = {
-    create?: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput> | ImageUploadCreateWithoutServiceInput[] | ImageUploadUncheckedCreateWithoutServiceInput[]
-    connectOrCreate?: ImageUploadCreateOrConnectWithoutServiceInput | ImageUploadCreateOrConnectWithoutServiceInput[]
-    createMany?: ImageUploadCreateManyServiceInputEnvelope
-    connect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-  }
-
-  export type ImageUploadUncheckedCreateNestedManyWithoutServiceInput = {
-    create?: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput> | ImageUploadCreateWithoutServiceInput[] | ImageUploadUncheckedCreateWithoutServiceInput[]
-    connectOrCreate?: ImageUploadCreateOrConnectWithoutServiceInput | ImageUploadCreateOrConnectWithoutServiceInput[]
-    createMany?: ImageUploadCreateManyServiceInputEnvelope
-    connect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-  }
-
-  export type ServiceNameUpdateOneRequiredWithoutServiceNestedInput = {
-    create?: XOR<ServiceNameCreateWithoutServiceInput, ServiceNameUncheckedCreateWithoutServiceInput>
-    connectOrCreate?: ServiceNameCreateOrConnectWithoutServiceInput
-    upsert?: ServiceNameUpsertWithoutServiceInput
-    connect?: ServiceNameWhereUniqueInput
-    update?: XOR<XOR<ServiceNameUpdateToOneWithWhereWithoutServiceInput, ServiceNameUpdateWithoutServiceInput>, ServiceNameUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type ImageUploadUpdateManyWithoutServiceNestedInput = {
-    create?: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput> | ImageUploadCreateWithoutServiceInput[] | ImageUploadUncheckedCreateWithoutServiceInput[]
-    connectOrCreate?: ImageUploadCreateOrConnectWithoutServiceInput | ImageUploadCreateOrConnectWithoutServiceInput[]
-    upsert?: ImageUploadUpsertWithWhereUniqueWithoutServiceInput | ImageUploadUpsertWithWhereUniqueWithoutServiceInput[]
-    createMany?: ImageUploadCreateManyServiceInputEnvelope
-    set?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    disconnect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    delete?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    connect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    update?: ImageUploadUpdateWithWhereUniqueWithoutServiceInput | ImageUploadUpdateWithWhereUniqueWithoutServiceInput[]
-    updateMany?: ImageUploadUpdateManyWithWhereWithoutServiceInput | ImageUploadUpdateManyWithWhereWithoutServiceInput[]
-    deleteMany?: ImageUploadScalarWhereInput | ImageUploadScalarWhereInput[]
-  }
-
-  export type ImageUploadUncheckedUpdateManyWithoutServiceNestedInput = {
-    create?: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput> | ImageUploadCreateWithoutServiceInput[] | ImageUploadUncheckedCreateWithoutServiceInput[]
-    connectOrCreate?: ImageUploadCreateOrConnectWithoutServiceInput | ImageUploadCreateOrConnectWithoutServiceInput[]
-    upsert?: ImageUploadUpsertWithWhereUniqueWithoutServiceInput | ImageUploadUpsertWithWhereUniqueWithoutServiceInput[]
-    createMany?: ImageUploadCreateManyServiceInputEnvelope
-    set?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    disconnect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    delete?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    connect?: ImageUploadWhereUniqueInput | ImageUploadWhereUniqueInput[]
-    update?: ImageUploadUpdateWithWhereUniqueWithoutServiceInput | ImageUploadUpdateWithWhereUniqueWithoutServiceInput[]
-    updateMany?: ImageUploadUpdateManyWithWhereWithoutServiceInput | ImageUploadUpdateManyWithWhereWithoutServiceInput[]
-    deleteMany?: ImageUploadScalarWhereInput | ImageUploadScalarWhereInput[]
-  }
-
-  export type ServiceCreateNestedOneWithoutImageUploadInput = {
-    create?: XOR<ServiceCreateWithoutImageUploadInput, ServiceUncheckedCreateWithoutImageUploadInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutImageUploadInput
-    connect?: ServiceWhereUniqueInput
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type ServiceUpdateOneWithoutImageUploadNestedInput = {
-    create?: XOR<ServiceCreateWithoutImageUploadInput, ServiceUncheckedCreateWithoutImageUploadInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutImageUploadInput
-    upsert?: ServiceUpsertWithoutImageUploadInput
-    disconnect?: ServiceWhereInput | boolean
-    delete?: ServiceWhereInput | boolean
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<XOR<ServiceUpdateToOneWithWhereWithoutImageUploadInput, ServiceUpdateWithoutImageUploadInput>, ServiceUncheckedUpdateWithoutImageUploadInput>
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type NullableBigIntFieldUpdateOperationsInput = {
@@ -13074,6 +12476,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -13097,22 +12515,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedBigIntNullableFilter<$PrismaModel = never> = {
@@ -13151,544 +12553,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type ServiceNameCreateWithoutBlogInput = {
-    id?: bigint | number
-    service_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    service_link: string
-    Service?: ServiceCreateNestedManyWithoutServiceNameInput
-  }
-
-  export type ServiceNameUncheckedCreateWithoutBlogInput = {
-    id?: bigint | number
-    service_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    service_link: string
-    Service?: ServiceUncheckedCreateNestedManyWithoutServiceNameInput
-  }
-
-  export type ServiceNameCreateOrConnectWithoutBlogInput = {
-    where: ServiceNameWhereUniqueInput
-    create: XOR<ServiceNameCreateWithoutBlogInput, ServiceNameUncheckedCreateWithoutBlogInput>
-  }
-
-  export type ServiceNameUpsertWithoutBlogInput = {
-    update: XOR<ServiceNameUpdateWithoutBlogInput, ServiceNameUncheckedUpdateWithoutBlogInput>
-    create: XOR<ServiceNameCreateWithoutBlogInput, ServiceNameUncheckedCreateWithoutBlogInput>
-    where?: ServiceNameWhereInput
-  }
-
-  export type ServiceNameUpdateToOneWithWhereWithoutBlogInput = {
-    where?: ServiceNameWhereInput
-    data: XOR<ServiceNameUpdateWithoutBlogInput, ServiceNameUncheckedUpdateWithoutBlogInput>
-  }
-
-  export type ServiceNameUpdateWithoutBlogInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    service_link?: StringFieldUpdateOperationsInput | string
-    Service?: ServiceUpdateManyWithoutServiceNameNestedInput
-  }
-
-  export type ServiceNameUncheckedUpdateWithoutBlogInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    service_link?: StringFieldUpdateOperationsInput | string
-    Service?: ServiceUncheckedUpdateManyWithoutServiceNameNestedInput
-  }
-
-  export type ServiceCreateWithoutServiceNameInput = {
-    id?: bigint | number
-    kw_title: string
-    kw_des: string
-    kw_h1: string
-    kw_top1: string
-    kw_top2: string
-    kw_con1: string
-    kw_con2: string
-    kw_img1?: string | null
-    kw_img2?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    topalt?: string | null
-    bottomalt?: string | null
-    ImageUpload?: ImageUploadCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceUncheckedCreateWithoutServiceNameInput = {
-    id?: bigint | number
-    kw_title: string
-    kw_des: string
-    kw_h1: string
-    kw_top1: string
-    kw_top2: string
-    kw_con1: string
-    kw_con2: string
-    kw_img1?: string | null
-    kw_img2?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    topalt?: string | null
-    bottomalt?: string | null
-    ImageUpload?: ImageUploadUncheckedCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceCreateOrConnectWithoutServiceNameInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput>
-  }
-
-  export type ServiceCreateManyServiceNameInputEnvelope = {
-    data: ServiceCreateManyServiceNameInput | ServiceCreateManyServiceNameInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BlogCreateWithoutServiceNameInput = {
-    id?: bigint | number
-    title: string
-    description: string
-    content: string
-    image: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type BlogUncheckedCreateWithoutServiceNameInput = {
-    id?: bigint | number
-    title: string
-    description: string
-    content: string
-    image: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type BlogCreateOrConnectWithoutServiceNameInput = {
-    where: BlogWhereUniqueInput
-    create: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput>
-  }
-
-  export type BlogCreateManyServiceNameInputEnvelope = {
-    data: BlogCreateManyServiceNameInput | BlogCreateManyServiceNameInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ServiceUpsertWithWhereUniqueWithoutServiceNameInput = {
-    where: ServiceWhereUniqueInput
-    update: XOR<ServiceUpdateWithoutServiceNameInput, ServiceUncheckedUpdateWithoutServiceNameInput>
-    create: XOR<ServiceCreateWithoutServiceNameInput, ServiceUncheckedCreateWithoutServiceNameInput>
-  }
-
-  export type ServiceUpdateWithWhereUniqueWithoutServiceNameInput = {
-    where: ServiceWhereUniqueInput
-    data: XOR<ServiceUpdateWithoutServiceNameInput, ServiceUncheckedUpdateWithoutServiceNameInput>
-  }
-
-  export type ServiceUpdateManyWithWhereWithoutServiceNameInput = {
-    where: ServiceScalarWhereInput
-    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutServiceNameInput>
-  }
-
-  export type ServiceScalarWhereInput = {
-    AND?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
-    OR?: ServiceScalarWhereInput[]
-    NOT?: ServiceScalarWhereInput | ServiceScalarWhereInput[]
-    id?: BigIntFilter<"Service"> | bigint | number
-    service_id?: BigIntFilter<"Service"> | bigint | number
-    kw_title?: StringFilter<"Service"> | string
-    kw_des?: StringFilter<"Service"> | string
-    kw_h1?: StringFilter<"Service"> | string
-    kw_top1?: StringFilter<"Service"> | string
-    kw_top2?: StringFilter<"Service"> | string
-    kw_con1?: StringFilter<"Service"> | string
-    kw_con2?: StringFilter<"Service"> | string
-    kw_img1?: StringNullableFilter<"Service"> | string | null
-    kw_img2?: StringNullableFilter<"Service"> | string | null
-    created_at?: DateTimeNullableFilter<"Service"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"Service"> | Date | string | null
-    topalt?: StringNullableFilter<"Service"> | string | null
-    bottomalt?: StringNullableFilter<"Service"> | string | null
-  }
-
-  export type BlogUpsertWithWhereUniqueWithoutServiceNameInput = {
-    where: BlogWhereUniqueInput
-    update: XOR<BlogUpdateWithoutServiceNameInput, BlogUncheckedUpdateWithoutServiceNameInput>
-    create: XOR<BlogCreateWithoutServiceNameInput, BlogUncheckedCreateWithoutServiceNameInput>
-  }
-
-  export type BlogUpdateWithWhereUniqueWithoutServiceNameInput = {
-    where: BlogWhereUniqueInput
-    data: XOR<BlogUpdateWithoutServiceNameInput, BlogUncheckedUpdateWithoutServiceNameInput>
-  }
-
-  export type BlogUpdateManyWithWhereWithoutServiceNameInput = {
-    where: BlogScalarWhereInput
-    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyWithoutServiceNameInput>
-  }
-
-  export type BlogScalarWhereInput = {
-    AND?: BlogScalarWhereInput | BlogScalarWhereInput[]
-    OR?: BlogScalarWhereInput[]
-    NOT?: BlogScalarWhereInput | BlogScalarWhereInput[]
-    id?: BigIntFilter<"Blog"> | bigint | number
-    title?: StringFilter<"Blog"> | string
-    description?: StringFilter<"Blog"> | string
-    content?: StringFilter<"Blog"> | string
-    image?: StringFilter<"Blog"> | string
-    servicename_id?: BigIntFilter<"Blog"> | bigint | number
-    created_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"Blog"> | Date | string | null
-  }
-
-  export type ServiceNameCreateWithoutServiceInput = {
-    id?: bigint | number
-    service_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    service_link: string
-    Blog?: BlogCreateNestedManyWithoutServiceNameInput
-  }
-
-  export type ServiceNameUncheckedCreateWithoutServiceInput = {
-    id?: bigint | number
-    service_name: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    service_link: string
-    Blog?: BlogUncheckedCreateNestedManyWithoutServiceNameInput
-  }
-
-  export type ServiceNameCreateOrConnectWithoutServiceInput = {
-    where: ServiceNameWhereUniqueInput
-    create: XOR<ServiceNameCreateWithoutServiceInput, ServiceNameUncheckedCreateWithoutServiceInput>
-  }
-
-  export type ImageUploadCreateWithoutServiceInput = {
-    id?: bigint | number
-    img_url: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    location: string
-    worked_date: Date | string
-  }
-
-  export type ImageUploadUncheckedCreateWithoutServiceInput = {
-    id?: bigint | number
-    img_url: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    location: string
-    worked_date: Date | string
-  }
-
-  export type ImageUploadCreateOrConnectWithoutServiceInput = {
-    where: ImageUploadWhereUniqueInput
-    create: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput>
-  }
-
-  export type ImageUploadCreateManyServiceInputEnvelope = {
-    data: ImageUploadCreateManyServiceInput | ImageUploadCreateManyServiceInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ServiceNameUpsertWithoutServiceInput = {
-    update: XOR<ServiceNameUpdateWithoutServiceInput, ServiceNameUncheckedUpdateWithoutServiceInput>
-    create: XOR<ServiceNameCreateWithoutServiceInput, ServiceNameUncheckedCreateWithoutServiceInput>
-    where?: ServiceNameWhereInput
-  }
-
-  export type ServiceNameUpdateToOneWithWhereWithoutServiceInput = {
-    where?: ServiceNameWhereInput
-    data: XOR<ServiceNameUpdateWithoutServiceInput, ServiceNameUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type ServiceNameUpdateWithoutServiceInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    service_link?: StringFieldUpdateOperationsInput | string
-    Blog?: BlogUpdateManyWithoutServiceNameNestedInput
-  }
-
-  export type ServiceNameUncheckedUpdateWithoutServiceInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_name?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    service_link?: StringFieldUpdateOperationsInput | string
-    Blog?: BlogUncheckedUpdateManyWithoutServiceNameNestedInput
-  }
-
-  export type ImageUploadUpsertWithWhereUniqueWithoutServiceInput = {
-    where: ImageUploadWhereUniqueInput
-    update: XOR<ImageUploadUpdateWithoutServiceInput, ImageUploadUncheckedUpdateWithoutServiceInput>
-    create: XOR<ImageUploadCreateWithoutServiceInput, ImageUploadUncheckedCreateWithoutServiceInput>
-  }
-
-  export type ImageUploadUpdateWithWhereUniqueWithoutServiceInput = {
-    where: ImageUploadWhereUniqueInput
-    data: XOR<ImageUploadUpdateWithoutServiceInput, ImageUploadUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type ImageUploadUpdateManyWithWhereWithoutServiceInput = {
-    where: ImageUploadScalarWhereInput
-    data: XOR<ImageUploadUpdateManyMutationInput, ImageUploadUncheckedUpdateManyWithoutServiceInput>
-  }
-
-  export type ImageUploadScalarWhereInput = {
-    AND?: ImageUploadScalarWhereInput | ImageUploadScalarWhereInput[]
-    OR?: ImageUploadScalarWhereInput[]
-    NOT?: ImageUploadScalarWhereInput | ImageUploadScalarWhereInput[]
-    id?: BigIntFilter<"ImageUpload"> | bigint | number
-    service_id?: BigIntFilter<"ImageUpload"> | bigint | number
-    img_url?: StringFilter<"ImageUpload"> | string
-    created_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"ImageUpload"> | Date | string | null
-    location?: StringFilter<"ImageUpload"> | string
-    worked_date?: DateTimeFilter<"ImageUpload"> | Date | string
-  }
-
-  export type ServiceCreateWithoutImageUploadInput = {
-    id?: bigint | number
-    kw_title: string
-    kw_des: string
-    kw_h1: string
-    kw_top1: string
-    kw_top2: string
-    kw_con1: string
-    kw_con2: string
-    kw_img1?: string | null
-    kw_img2?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    topalt?: string | null
-    bottomalt?: string | null
-    serviceName: ServiceNameCreateNestedOneWithoutServiceInput
-  }
-
-  export type ServiceUncheckedCreateWithoutImageUploadInput = {
-    id?: bigint | number
-    service_id: bigint | number
-    kw_title: string
-    kw_des: string
-    kw_h1: string
-    kw_top1: string
-    kw_top2: string
-    kw_con1: string
-    kw_con2: string
-    kw_img1?: string | null
-    kw_img2?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    topalt?: string | null
-    bottomalt?: string | null
-  }
-
-  export type ServiceCreateOrConnectWithoutImageUploadInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutImageUploadInput, ServiceUncheckedCreateWithoutImageUploadInput>
-  }
-
-  export type ServiceUpsertWithoutImageUploadInput = {
-    update: XOR<ServiceUpdateWithoutImageUploadInput, ServiceUncheckedUpdateWithoutImageUploadInput>
-    create: XOR<ServiceCreateWithoutImageUploadInput, ServiceUncheckedCreateWithoutImageUploadInput>
-    where?: ServiceWhereInput
-  }
-
-  export type ServiceUpdateToOneWithWhereWithoutImageUploadInput = {
-    where?: ServiceWhereInput
-    data: XOR<ServiceUpdateWithoutImageUploadInput, ServiceUncheckedUpdateWithoutImageUploadInput>
-  }
-
-  export type ServiceUpdateWithoutImageUploadInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    kw_title?: StringFieldUpdateOperationsInput | string
-    kw_des?: StringFieldUpdateOperationsInput | string
-    kw_h1?: StringFieldUpdateOperationsInput | string
-    kw_top1?: StringFieldUpdateOperationsInput | string
-    kw_top2?: StringFieldUpdateOperationsInput | string
-    kw_con1?: StringFieldUpdateOperationsInput | string
-    kw_con2?: StringFieldUpdateOperationsInput | string
-    kw_img1?: NullableStringFieldUpdateOperationsInput | string | null
-    kw_img2?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    topalt?: NullableStringFieldUpdateOperationsInput | string | null
-    bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-    serviceName?: ServiceNameUpdateOneRequiredWithoutServiceNestedInput
-  }
-
-  export type ServiceUncheckedUpdateWithoutImageUploadInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    service_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    kw_title?: StringFieldUpdateOperationsInput | string
-    kw_des?: StringFieldUpdateOperationsInput | string
-    kw_h1?: StringFieldUpdateOperationsInput | string
-    kw_top1?: StringFieldUpdateOperationsInput | string
-    kw_top2?: StringFieldUpdateOperationsInput | string
-    kw_con1?: StringFieldUpdateOperationsInput | string
-    kw_con2?: StringFieldUpdateOperationsInput | string
-    kw_img1?: NullableStringFieldUpdateOperationsInput | string | null
-    kw_img2?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    topalt?: NullableStringFieldUpdateOperationsInput | string | null
-    bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ServiceCreateManyServiceNameInput = {
-    id?: bigint | number
-    kw_title: string
-    kw_des: string
-    kw_h1: string
-    kw_top1: string
-    kw_top2: string
-    kw_con1: string
-    kw_con2: string
-    kw_img1?: string | null
-    kw_img2?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    topalt?: string | null
-    bottomalt?: string | null
-  }
-
-  export type BlogCreateManyServiceNameInput = {
-    id?: bigint | number
-    title: string
-    description: string
-    content: string
-    image: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type ServiceUpdateWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    kw_title?: StringFieldUpdateOperationsInput | string
-    kw_des?: StringFieldUpdateOperationsInput | string
-    kw_h1?: StringFieldUpdateOperationsInput | string
-    kw_top1?: StringFieldUpdateOperationsInput | string
-    kw_top2?: StringFieldUpdateOperationsInput | string
-    kw_con1?: StringFieldUpdateOperationsInput | string
-    kw_con2?: StringFieldUpdateOperationsInput | string
-    kw_img1?: NullableStringFieldUpdateOperationsInput | string | null
-    kw_img2?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    topalt?: NullableStringFieldUpdateOperationsInput | string | null
-    bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-    ImageUpload?: ImageUploadUpdateManyWithoutServiceNestedInput
-  }
-
-  export type ServiceUncheckedUpdateWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    kw_title?: StringFieldUpdateOperationsInput | string
-    kw_des?: StringFieldUpdateOperationsInput | string
-    kw_h1?: StringFieldUpdateOperationsInput | string
-    kw_top1?: StringFieldUpdateOperationsInput | string
-    kw_top2?: StringFieldUpdateOperationsInput | string
-    kw_con1?: StringFieldUpdateOperationsInput | string
-    kw_con2?: StringFieldUpdateOperationsInput | string
-    kw_img1?: NullableStringFieldUpdateOperationsInput | string | null
-    kw_img2?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    topalt?: NullableStringFieldUpdateOperationsInput | string | null
-    bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-    ImageUpload?: ImageUploadUncheckedUpdateManyWithoutServiceNestedInput
-  }
-
-  export type ServiceUncheckedUpdateManyWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    kw_title?: StringFieldUpdateOperationsInput | string
-    kw_des?: StringFieldUpdateOperationsInput | string
-    kw_h1?: StringFieldUpdateOperationsInput | string
-    kw_top1?: StringFieldUpdateOperationsInput | string
-    kw_top2?: StringFieldUpdateOperationsInput | string
-    kw_con1?: StringFieldUpdateOperationsInput | string
-    kw_con2?: StringFieldUpdateOperationsInput | string
-    kw_img1?: NullableStringFieldUpdateOperationsInput | string | null
-    kw_img2?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    topalt?: NullableStringFieldUpdateOperationsInput | string | null
-    bottomalt?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type BlogUpdateWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type BlogUncheckedUpdateWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type BlogUncheckedUpdateManyWithoutServiceNameInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ImageUploadCreateManyServiceInput = {
-    id?: bigint | number
-    img_url: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    location: string
-    worked_date: Date | string
-  }
-
-  export type ImageUploadUpdateWithoutServiceInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    img_url?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    location?: StringFieldUpdateOperationsInput | string
-    worked_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ImageUploadUncheckedUpdateWithoutServiceInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    img_url?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    location?: StringFieldUpdateOperationsInput | string
-    worked_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ImageUploadUncheckedUpdateManyWithoutServiceInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    img_url?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    location?: StringFieldUpdateOperationsInput | string
-    worked_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

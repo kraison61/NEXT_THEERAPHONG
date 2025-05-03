@@ -25,14 +25,13 @@ model User {
 
 model Blog {
   id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  title          String    @unique @db.VarChar(255)
+  title          String    @db.VarChar(255)
   description    String    @db.VarChar(255)
   content        String    @db.LongText
   image          String    @db.VarChar(255)
-  servicename_id BigInt
+  servicename_id Int
   created_at     DateTime? @db.Timestamp(0)
   updated_at     DateTime? @db.Timestamp(0)
-  serviceName ServiceName @relation(fields: [servicename_id], references: [id])
 
   @@map("blogs")
 }
@@ -42,48 +41,42 @@ model ServiceName {
   service_name String    @db.VarChar(255)
   created_at   DateTime? @db.Timestamp(0)
   updated_at   DateTime? @db.Timestamp(0)
-  service_link String    @unique @db.VarChar(255)
-  Service      Service[]
-  Blog         Blog[]
+  service_link String    @db.VarChar(255)
 
   @@map("service_names")
 }
 
 model Service {
-  id          BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
-  service_id  BigInt
-  kw_title    String        @db.VarChar(255)
-  kw_des      String        @db.VarChar(255)
-  kw_h1       String        @db.VarChar(255)
-  kw_top1     String        @db.VarChar(255)
-  kw_top2     String        @db.VarChar(255)
-  kw_con1     String        @db.LongText
-  kw_con2     String        @db.LongText
-  kw_img1     String?       @db.VarChar(255)
-  kw_img2     String?       @db.VarChar(255)
-  created_at  DateTime?     @db.Timestamp(0)
-  updated_at  DateTime?     @db.Timestamp(0)
-  topalt      String?       @db.VarChar(255)
-  bottomalt   String?       @db.VarChar(255)
-  serviceName ServiceName   @relation(fields: [service_id], references: [id])
-  ImageUpload ImageUpload[]
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  service_id BigInt
+  kw_title   String    @db.VarChar(255)
+  kw_des     String    @db.VarChar(255)
+  kw_h1      String    @db.VarChar(255)
+  kw_top1    String    @db.VarChar(255)
+  kw_top2    String    @db.VarChar(255)
+  kw_con1    String    @db.LongText
+  kw_con2    String    @db.LongText
+  kw_img1    String?   @db.VarChar(255)
+  kw_img2    String?   @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  topalt     String?   @db.VarChar(255)
+  bottomalt  String?   @db.VarChar(255)
 
   @@map("services")
 }
 
 model ImageUpload {
   id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
-  service_id  BigInt
+  service_id  Int
   img_url     String    @db.VarChar(255)
   created_at  DateTime? @db.Timestamp(0)
   updated_at  DateTime? @db.Timestamp(0)
   location    String    @db.VarChar(255)
   worked_date DateTime  @db.Date
-  service     Service?  @relation(fields: [service_id], references: [id])
 
   @@map("image_uploads")
 }
-
 
 model failed_jobs {
   id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt

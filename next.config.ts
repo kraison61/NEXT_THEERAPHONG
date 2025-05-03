@@ -4,13 +4,12 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '159.223.203.178',
-        port: '9000',
+        hostname: 'kraison.thddns.net',
         pathname: '/theeraphong/**',
       },
       {
         protocol: 'http',
-        hostname: 'kraison.thddns.net',
+        hostname: '192.168.220.253',
         pathname: '/theeraphong/**',
       },
       {
